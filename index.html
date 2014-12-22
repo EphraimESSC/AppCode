@@ -15,37 +15,698 @@
 
   </head>
   <body>
-
-      <header>
-        <h1>Ephraimessc</h1>
-        <p></p>
-      </header>
-
-      <div id="banner">
-        <span id="logo"></span>
-
-        <a href="https://github.com/EphraimESSC/EphraimESSC" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
+    <div data-role="page" id="defaultPage" data-theme="b">
+    <div data-role="header" id="header">
+      <h1 id="pageHeader">TCMDiagnosis</h1>
+    </div>
+    <div id="content">
+      <div id="tabs" >
+        <div data-role="navbar" id="mainTabHeader">
           <ul>
-            <li><a href="https://github.com/EphraimESSC/EphraimESSC/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/EphraimESSC/EphraimESSC/tarball/master" class="button">TAR</a></li>
+
+            <li><a href="#client" id="clientTabHeader">Client</a></li>
+            <li><a href="#diagnose" class="ui-disabled" id="diagnoseTabHeader">Diagnose</a></li>
+            <li><a href="#classification" class="ui-disabled" id="classificationTabHeader">Classification</a></li>
+            <li><a href="#config">Config</a></li>
           </ul>
         </div>
-      </div><!-- end banner -->
 
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
-        <p>Ephraim ESSC Welcome page</p>
-      </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/EphraimESSC">EphraimESSC</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
-      </footer>
+        <!-- Client Tab contents -->
+        <div id="client" class="ui-body-d ui-content">
+
+
+          <a data-role="button" data-transition="slidedown" id="newClientButton">New Client</a>
+
+          <!-- Client Form area -->
+          <div class="div-widget" id="newClientArea" style="display:none;">
+            <div data-role="fieldcontain" style="display:none">
+              <label>Id</label>
+              <input id="clientId" type="text">
+            </div>
+            <div data-role="fieldcontain">
+              <label>Name</label>
+              <input id="clientNameInput" type="text">
+            </div>
+            <div data-role="fieldcontain">
+              <label>Age</label>
+              <input id="clientAgeInput" type="number">
+            </div>
+            <div data-role="fieldcontain">
+              <label>Date and hour of birth</label>
+              <input id="birthdateAndHourInput" type="datetime-local">
+            </div>
+            <div data-role="content">
+              <select id="clientGender" data-native-menu="false" data-format="nestedTemplateFormatter">
+                <option value="">-- Select Gender --</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div data-role="fieldcontain">
+              <label>Phone</label>
+              <input id="clientPhoneInput" type="text">
+            </div>
+            <div data-role="fieldcontain">
+              <label>Address</label>
+              <textarea id="clientAddressInput"></textarea>
+            </div>
+            <div data-role="fieldcontain">
+              <label>Email</label>
+              <input id="clientEmailInput" type="email">
+            </div>
+            <a data-role="button" id="cancelChangesClientButton" data-inline="true">Cancel</a>
+            <a data-role="button" id="saveClientButton" style="display:none;" data-inline="true">Save</a>
+            <a data-role="button" id="editClientButton" data-inline="true">Edit</a>
+          </div>
+
+          <!-- Client search area -->
+          <div data-role="fieldcontain">
+            <form class="ui-filterable">
+              <input id="autocomplete-input" data-type="search" placeholder="Search client ...">
+            </form>
+            <ul id="autocomplete" data-role="listview"
+                data-inset="true" data-filter="true"
+                data-input="#autocomplete-input"></ul>
+
+            <a data-role="button" id="fetchAllButton" data-inline="true">Fetch All</a>
+            <a data-role="button" id="clearSearchButton" data-inline="true">Clear Fetch</a>
+          </div>
+        </div>
+
+        <!-- Classification Tab contents -->
+        <div id="classification" class="ui-body-d ui-content">
+          <div id="classificationTabContent">
+          <div data-role="collapsible-set" id="editClassificationList">
+
+          </div>
+          </div>
+          <a id="saveClassificationChanges" href="#" data-role="button">Save</a>
+        </div>
+
+        <!-- Diagnose Tab contents -->
+        <div id="diagnose">
+          <input id="clientId" type="hidden" />
+          <div style="display: none;">
+            <input id="diagnoseId" placeholder="Existing Diagnose Id ..." type="text" />
+            <input id="diagnoseIdForClient" placeholder="Next New Diagnose Number ..." type="text" />
+          </div>
+          <div id="diagnoseTabArea"></div>
+          <a id="cancelDiagnoseChanges" href="#" data-role="button" style="display: none;">Cancel</a>
+          <a id="saveDiagnoseChanges" href="#" data-role="button">Save</a>
+        </div>
+
+        <!-- Config Tab contents -->
+        <div id="config" class="ui-body-d ui-content">
+
+          <div id="diagnoseConfig" class="ui-body-d ui-content" data-role="collapsible" data-collapsed="false" >
+            <h4 data-content="tabName">Config Diagnose</h4>
+            <div class="ui-body-d ui-content">
+            <ul data-role="listview" ></ul>
+            </div>
+            <div data-role="fieldcontain">
+              <a data-role="button" id="addDiagnoseTabButton">Add Diagnose</a>
+            </div>
+          </div>
+
+          <div id="diagnoseClassified" class="ui-body-d ui-content"  data-role="collapsible" data-collapsed="true">
+            <h4>Classified Diagnose Items </h4>
+
+            <ul data-role="listview" id="allClassificationNames"></ul>
+
+            <input type="text" placeholder="Classification ..." id="classificationName" />
+            <div align="right">
+              <a href="#" data-role="button" data-inline="true" id="addClassificationButton">Add Classification</a>
+            </div>
+          </div>
+
+          <div id="dbSection" class="ui-body-d ui-content"  data-role="collapsible" data-collapsed="true">
+            <h4>DB</h4>
+            <a data-role="button"  id="dropDBStructureButton"
+               data-inline="true">DB Drop structure</a>
+
+            <a data-role="button"  id="createDBButton"
+               data-inline="true">DB create structure</a>
+            <a data-role="button" id="loadTestClientDataButton"
+               data-inline="true">DB Install test client data</a>
+
+            <a data-role="button" id="dbExportDataButton"
+               data-inline="true">DB Export Data</a>
+
+            <ul id="filesForDownload"></ul>
+          </div>
+        </div>
+      </div>
     </div>
+
+  </div>
+
+  <div id="htmlContent"></div>
+
+
+<!-- Start: Collapsible Panel For Client personal info template -->
+<script type="text/html" id="collapsibleForClientPersonalInformationTemplate">
+  <div data-role="collapsible">
+    <h5>Personal Details</h5>
+    <div data-role="fieldcontain" style="display:none">
+      <label>Id</label>
+      <label class="client-id" type="text" data-content="id"
+             data-template-bind='[{"attribute": "value", "value": "id"},
+                                 {"attribute": "data-client-id", "value": "id"},
+                                 {"attribute": "data-current-value", "value": "id"},
+                                 {"attribute": "id", "value": "id",
+                                 "formatter": "prependChars", "formatOptions": "clientId"}]' >
+      </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Name:</label>
+      <label type="text" class="client-name-input" data-content="name"
+             data-template-bind='[{"attribute": "value", "value": "name"},
+                                 {"attribute": "data-client-id", "value": "id"},
+                                 {"attribute": "data-current-value", "value": "name"},
+                                 {"attribute": "id", "value": "id",
+                                 "formatter": "prependChars", "formatOptions": "clientNameInput"}]' >
+      </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Age:</label>
+      <label type="number" class="js-client-age-input" data-content="age"
+             data-template-bind='[{"attribute": "value", "value": "age"},
+                                 {"attribute": "data-client-id", "value": "id"},
+                                 {"attribute": "data-current-value", "value": "age"},
+                                 {"attribute": "id", "value": "id",
+                                 "formatter": "prependChars", "formatOptions": "clientAgeInput"}]' >
+        </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Date and hour of birth:</label>
+      <label type="datetime-local" class="js-birthdate-and-hour-input" data-content="dateHourOfBirth"
+             data-template-bind='[{"attribute": "value", "value": "dateHourOfBirth"},
+                                 {"attribute": "data-client-id", "value": "id"},
+                                 {"attribute": "data-current-value", "value": "dateHourOfBirth"},
+                                 {"attribute": "id", "value": "id",
+                                 "formatter": "prependChars", "formatOptions": "birthdateAndHourInput"}]' >
+        </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Gender:</label>
+      <label class="js-client-gender" data-native-menu="false" data-content="sex" style="text-transform: capitalize;"
+              data-template-bind='[{"attribute": "value", "value": "sex"},
+                                  {"attribute": "data-client-id", "value": "id"},
+                                  {"attribute": "data-current-value", "value": "sex"},
+                                  {"attribute": "id", "value": "id",
+                                  "formatter": "prependChars", "formatOptions": "clientGender"}]'
+              >
+      </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Phone:</label>
+      <label type="text" class="js-phone-input" data-content="phone"
+             data-template-bind='[{"attribute": "value", "value": "phone"},
+                                 {"attribute": "data-client-id", "value": "id"},
+                                 {"attribute": "data-current-value", "value": "phone"},
+                                 {"attribute": "id", "value": "id",
+                                 "formatter": "prependChars", "formatOptions": "clientPhoneInput"}]' >
+        </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Address:</label>
+      <label class="js-address-input" data-content="address"
+                data-template-bind='[{"attribute": "data-current-value", "value": "address"},
+                                    {"attribute": "data-client-id", "value": "id"},
+                                    {"attribute": "id", "value": "id",
+                                    "formatter": "prependChars", "formatOptions": "clientAddressInput"}]'>
+        </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Email:</label>
+      <label type="email" class="js-client-email-input" data-content="email"
+             data-template-bind='[{"attribute": "value", "value": "email"},
+                                 {"attribute": "data-client-id", "value": "id"},
+                                 {"attribute": "data-current-value", "value": "email"},
+                                 {"attribute": "id", "value": "id",
+                                 "formatter": "prependChars", "formatOptions": "clientEmailInput"}]' >
+        </label>
+    </div>
+
+    <a data-role="button" class="js-cancel-changes-client-button" data-inline="true"
+       data-template-bind='[{"attribute": "id", "value": "id",
+                                 "formatter": "prependChars", "formatOptions": "cancelChangesClientButton"},
+                           {"attribute": "data-client-id", "value": "id"}]' style="display: none;">Cancel</a>
+    <a data-role="button" class="js-save-client-button ui-disabled js-disabled" style="display:none;" data-inline="true"
+       data-template-bind='[{"attribute": "id", "value": "id",
+                                 "formatter": "prependChars", "formatOptions": "saveClientButton"},
+                           {"attribute": "data-client-id", "value": "id"}]'>Save</a>
+    <a data-role="button" class="js-edit-client-button" data-inline="true"
+       data-template-bind='[{"attribute": "id", "value": "id",
+                                 "formatter": "prependChars", "formatOptions": "editClientButton"},
+                           {"attribute": "data-client-id", "value": "id"}]'>Edit</a>
+  </div>
+</script>
+<!-- End: Collapsible Panel For Client personal info template -->
+
+<!-- Start: collapsible Panel For Client tab template -->
+<script type="text/html" id="collapsiblePanelForClientTemplate">
+  <div class="js-client-details" data-role="collapsible"
+       data-template-bind='[{"attribute": "data-client-id", "value": "properties.clientId"}]'>
+    <h4 data-content="properties.heading">Client Name</h4>
+
+
+    <div class="js-appointments" id="" data-role="collapsible">
+      <h4>Calendar</h4>
+
+      <ul data-role="listview" class="js-appointments-ist"
+          data-template-bind='[{"attribute": "id", "value": "properties.clientId",
+                                 "formatter": "prependChars", "formatOptions": "appointmentsList"},
+                           {"attribute": "data-client-id", "value": "properties.clientId"}]'
+          >
+      </ul>
+
+      <input type="datetime-local"
+             data-template-bind='[{"attribute": "id", "value": "properties.clientId",
+                                 "formatter": "prependChars", "formatOptions": "appointmentDate"},
+                           {"attribute": "data-client-id", "value": "properties.clientId"}]'
+             />
+
+      <div align="right">
+        <a href="#" data-role="button" data-inline="true" class="js-edit-appointments"
+           data-template-bind='[{"attribute": "id", "value": "properties.clientId",
+                                 "formatter": "prependChars", "formatOptions": "editAppointmentsButton"},
+                               {"attribute": "data-client-id", "value": "properties.clientId"}]'
+           >Edit Appointments</a>
+
+        <a href="#" data-role="button" data-inline="true" class="js-save-appointments hide"
+           data-template-bind='[{"attribute": "id", "value": "properties.clientId",
+                                 "formatter": "prependChars", "formatOptions": "saveAppointmentsButton"},
+                               {"attribute": "data-client-id", "value": "properties.clientId"}]'
+           >Save Appointments</a>
+
+        <a href="#" data-role="button" data-inline="true" class="js-add-appointment"
+           data-template-bind='[{"attribute": "data-client-id", "value": "properties.clientId"}]'
+           >Add Appointment</a>
+      </div>
+    </div>
+
+    <div class="js-client-personal-details"
+         data-content-prepend="properties.personalData"
+                data-format="nestedTemplateFormatter"
+                data-format-options='{"template":"#collapsibleForClientPersonalInformationTemplate"}'
+         >
+    </div>
+
+    <div class="js-diagnose-details" data-role="collapsible-set">
+
+    </div>
+    <div class="ui-body-d ui-content">
+      <a href="#" data-role="button" data-inline="true" class="js-add-new-diagnose-button"
+         data-template-bind='[{"attribute": "data-client-id", "value": "properties.clientId"}]'
+         >Add Diagnose</a>
+      <a href="#" data-role="button" data-inline="true" class="js-delete-client-button">Delete Client</a>
+    </div>
+  </div>
+</script>
+<!-- End: Collapsible panel template -->
+
+ <!-- Start: Collapsible Panel For Client Diagnose item in client tab template : child of collapsiblePanelForClientTemplate -->
+<script type="text/html" id="collapsiblePanelForClientDiagnoseTemplate">
+<div data-role="collapsible" data-collapsed="false" class="js-diagnose-item-container"
+     data-template-bind='[{"attribute": "data-client-id", "value": "properties.clientId"},
+                         {"attribute": "data-diagnose-id", "value": "properties.id"}]'>
+  <h5 data-content="properties.heading">Diagnose 1</h5>
+  <ul data-role="listview"
+      data-template-bind='[{"attribute": "id", "value": "properties.uniqueDiagnoseListId"}]'>
+
+  </ul>
+  <a href="#" data-role="button" data-inline="true" class="js-edit-diagnose-button">Edit</a>
+  <a href="#" data-role="button" data-inline="true" class="js-classify-diagnose-button"
+     data-template-bind='[{"attribute": "class", "value": "properties.classes"}]'
+     >Classify</a>
+  <a href="#" data-role="button" data-inline="true" class="js-delete-diagnose-button">Delete</a>
+</div>
+</script>
+<!-- End: Collapsible Panel For Client Diagnose item in client tab template -->
+
+
+ <!-- Start: Collapsible Panel For Client Editing Diagnose item in client tab template : child of collapsiblePanelForClientTemplate -->
+<script type="text/html" id="collapsiblePanelForClientEditingDiagnoseTemplate">
+<div data-role="collapsible" data-collapsed="false" class="js-diagnose-item-container"
+     data-template-bind='[{"attribute": "data-client-id", "value": "properties.clientId"},
+                         {"attribute": "data-diagnose-id", "value": "properties.id"}]'>
+  <h5 data-content="properties.heading">Diagnose 1</h5>
+  <div data-role="collapsible-set" class="js-diagnose-collapsible-set"
+      data-template-bind='[{"attribute": "id", "value": "properties.uniqueDiagnoseListId"}]'>
+
+  </div>
+  <a href="#" data-role="button" data-inline="true" class="js-edit-diagnose-button">Edit</a>
+  <a href="#" data-role="button" data-inline="true" class="js-delete-diagnose-button">Delete</a>
+</div>
+</script>
+<!-- End: Collapsible Panel For Client Editing Diagnose item in client tab template -->
+
+<!-- Start: List Item For Client Diagnose item in client tab template -->
+<script type="text/html" id="collapsibleListItemInClientDiagnoseTemplate">
+  <div data-role="collapsible" data-iconpos="right" data-inset="false" class="js-diagnose-list-item"
+      data-template-bind='[{"attribute": "data-client-id", "value": "properties.clientId"},
+                          {"attribute": "data-diagnose-id", "value": "properties.diagnoseId"},
+                          {"attribute": "data-diagnose-item-id", "value": "properties.diagnoseItemId"},
+                          {"attribute": "data-diagnose-item-name", "value": "properties.heading"}]'
+      >    
+    <h4 data-content="properties.heading">Diagnose Item Name</h4>    
+    <form>      
+      <fieldset data-role="controlgroup" data-type="horizontal"
+                data-content-prepend="properties.children"
+                data-format="nestedTemplateFormatter"
+                data-format-options='{"template":"#checkboxClassificationInClientDiagnoseTemplate"}'
+                >        
+      </fieldset>
+    </form>
+  </div>
+</script>
+<!-- End: List Item For Client Diagnose item in client tab template -->
+
+<!-- Start: List Item For Client Diagnose item in client tab template -->
+<script type="text/html" id="checkboxClassificationInClientDiagnoseTemplate">
+<label>
+  <span data-content="name"></span>
+  <input type="checkbox" class="js-diagnose-classification-item"
+         data-template-bind='[{"attribute": "data-class-id", "value": "id"},
+                             {"attribute": "data-class-name", "value": "name"}]'
+         >
+</label>
+</script>
+<!-- End: Collapsible panel template -->
+
+<!-- Start: Text Template -->
+<script type="text/html" id="TextTemplate">
+  <h4 data-content="properties.text">Dummy Text should not appear anywhere</h4>
+</script>
+<!-- End: Text Template -->
+
+<!-- Start: ToggleSwitch Template -->
+<script type="text/html" id="ToggleSwitchTemplate">
+<div data-role="fieldcontain" data-save-control="toggleSwitch">
+  <label for="checkbox-based-flipswitch"></label>
+  <input type="checkbox" id="checkbox-based-flipswitch"
+         data-role="flipswitch"
+         data-save-type="toggleSwitch"
+         data-default-value="off"
+         data-template-bind='[{"attribute": "id", "value": "properties.id",
+                              "formatter": "getUniqueProperty", "formatOptions": "toggleSwitch"},
+                             {"attribute": "data-save-label", "value": "properties.text"},
+                             {"attribute": "data-save-attr-label1", "value": "properties.label1"},
+                             {"attribute": "data-save-attr-label2", "value": "properties.label2"}]'>
+</div>
+</script>
+<!-- End: ToggleSwitch Template -->
+
+<!-- Start: Slider Template -->
+<script type="text/html" id="SliderTemplate">
+  <form data-save-control="slider">
+    <label for="slider-1" data-content="properties.label"
+           data-template-bind='[{"attribute": "for", "value": "properties.id", "formatter": "getUniqueProperty"}]'>Slider:</label>
+    <input type="range" name="slider-1" id="slider-1" min="0" max="100" value="0"
+           data-default-value="0"
+           data-template-bind='[{"attribute": "id", "value": "properties.id", "formatter": "getUniqueProperty"},
+                               {"attribute": "name", "value": "properties.id", "formatter": "getUniqueProperty"},
+                               {"attribute": "min", "value": "properties.min"},
+                               {"attribute": "max", "value": "properties.max"},
+                               {"attribute": "data-save-label", "value": "properties.label"},
+                               {"attribute": "value", "value": "properties.value"}]' />
+  </form>
+</script>
+<!-- End: Slider Template -->
+
+<!-- Start: RadioGroup template -->
+<script type="text/html" id="RadioGroupTemplate">
+  <fieldset data-role="controlgroup" data-save-control="radio">
+    <legend data-content="properties.legend"></legend>
+  </fieldset>
+</script>
+<!-- End: RadioGroup template -->
+
+<!-- Start: CheckboxGroup template -->
+<script type="text/html" id="CheckboxGroupTemplate">
+  <fieldset data-role="controlgroup" data-save-control="checkbox">
+    <legend data-content="properties.legend"></legend>
+  </fieldset>
+</script>
+<!-- End: CheckboxGroup template -->
+
+<!-- Start: Radio Button template -->
+<script type="text/html" id="RadioButtonTemplate">
+  <input type="radio" data-save-type="radio"
+         data-template-bind='[{"attribute": "id", "value": "properties.id", "formatter": "getUniqueProperty"},
+                             {"attribute": "name", "value": "properties.id", "formatter": "getFirstName"},
+                             {"attribute": "value", "value": "properties.label"},
+                             {"attribute": "data-save-id", "value": "properties.id", "formatter": "getUniqueProperty"},
+                             {"attribute": "data-save-label", "value": "properties.legend"}]' />
+  <label data-template-bind='[{"attribute": "for", "value": "properties.id", "formatter": "getUniqueProperty"}]'
+         data-content="properties.label"></label>
+</script>
+<!-- End: radio template  -->
+
+<!-- Start: Checkbox template -->
+<script type="text/html" id="CheckboxTemplate">
+  <input type="checkbox" data-save-type="checkbox"
+         data-template-bind='[{"attribute": "id", "value": "properties.id",
+                             "formatter": "getUniqueProperty"},
+                             {"attribute": "value", "value": "properties.label"},
+                             {"attribute": "data-save-id", "value": "properties.id", "formatter": "getUniqueProperty"},
+                             {"attribute": "data-save-label", "value": "properties.legend"}]' />
+  <label data-template-bind='[{"attribute": "for", "value": "properties.id", "formatter": "getUniqueProperty"}]'
+         data-content="properties.label"></label>
+</script>
+<!-- End: Checkbox template  -->
+
+<!-- Start: Div template -->
+<script type="text/html" id="divTemplate">
+  <div class="div-widget" data-template-bind='[{"attribute": "id", "value": "properties.id"},
+                                          {"attribute": "style", "value": "properties.style"}]'>
+  </div>
+</script>
+<!-- End: Div template  -->
+
+<!-- Start: Text Input template -->
+<script type="text/html" id="inputTemplate">
+  <div data-role="fieldcontain" data-save-control="TextInput">
+    <label data-content="properties.label"></label>
+    <input data-template-bind='[{"attribute": "id", "value": "properties.id", "formatter": "getUniqueProperty"},
+                              {"attribute": "type", "value": "type", "formatter": "controlType"},
+                               {"attribute": "data-save-label", "value": "properties.label"},
+                               {"attribute": "data-save-type", "value": "type", "formatter": "controlType"}]' />
+  </div>
+</script>
+<!-- End: Text Input template  -->
+
+<!-- Start: Collapsible panel template -->
+<script type="text/html" id="collapsiblePanelTemplate">
+  <div data-role="collapsible">
+  <h4 data-content="properties.heading">Collapsible Area</h4>
+  </div>
+</script>
+<!-- End: Collapsible panel template -->
+
+<!-- Start: Dropdown template -->
+<script type="text/html" id="dropdownTemplate">
+<div data-role="content">
+  <select data-native-menu="false" data-content-prepend="properties.options.children"
+      data-format="nestedTemplateFormatter"
+      data-format-options='{"template":"#dropdownItemTemplate"}'>
+  </select>
+</div>
+</script>
+
+<script type="text/html" id="dropdownItemTemplate">
+<option data-content="text"
+     data-template-bind='[{"attribute": "value", "value": "value"}]'
+     >
+</option>
+</script>
+<!-- End: Dropdown template -->
+
+
+<!-- Start: Config Tab template -->
+
+<!-- <script type="text/html" id="configEntryTemplate">
+  <div class="ui-body-d ui-content">
+    <div data-role="collapsible" data-collapsed="false" data-template-bind='[{"attribute": "id", "value": "appendToTabId"}]'>
+    <h4 data-content="tabName">Config Diagnose page</h4>
+      <ul data-role="listview"
+          data-content-prepend="controlsFiles"
+          data-format="nestedTemplateFormatter"
+          data-format-options='{"template":"#configEntryItemTemplate"}'
+          >
+      </ul>
+
+      <div class="ui-body-d ui-content">
+        <a data-role="button" id="addTab">Add Tab</a>
+      </div>
+    </div>
+  </div>
+</script>
+-->
+
+<script type="text/html" id="configEntryItemTemplate">
+
+<li class="js-tab-details-container" data-content="type"
+    data-template-bind='[{"attribute": "style", "value": "displayInCofigTab"}]'>
+
+  <div class="js-new-diagnose-container"
+       data-has-subtabs="false"
+       data-template-bind='[{"attribute": "id", "value": "isNewDiagnoseFile",
+                           "formatOptions": "newDiagnoseContainer", "value": "tabIndex",
+                           "formatter": "prependChars"},
+                           {"attribute": "data-diagnose-tab-config-index", "value": "tabIndex"}]'
+       >
+    <h4 data-content="tabName">Config Diagnose page</h4>
+
+    <div data-role="fieldcontain">
+      <label>Diagnose Name</label>
+
+      <input type="text" class="js-diagnose-name" value="Config Diagnose page"
+             data-template-bind='[{"attribute": "value", "value": "tabName"}]' />
+    </div>
+    <div data-template-bind='[{"attribute": "id",
+                             "formatOptions": "diagnoseControlsFilesContainer", "value": "tabIndex",
+                             "formatter": "prependChars"}]'
+        data-content-prepend="subTabsArray"
+        data-format="nestedTemplateFormatter"
+        data-format-options='{"template":"#configEntryFileInputTemplate"}'>
+
+    </div>
+
+    <div data-role="fieldcontain">
+      <a href="#" data-role="button" data-inline="true" class="js-save-button">Save</a>
+      <a href="#" data-role="button" data-inline="true" class="js-delete-button"
+         data-template-bind='[{"attribute": "data-diagnose-tab-config-index", "value": "tabIndex"}]'
+         >Delete</a>
+      <a href="#" data-role="button" data-inline="true" class="js-add-subtab-button"
+         data-template-bind='[{"attribute": "data-diagnose-tab-config-index", "value": "tabIndex"}]'
+         >Add Sub Tab</a>
+    </div>
+    <div data-role="fieldcontain" style="display:none">
+      <input type="checkbox"
+             class="categorize-diagnose-flipswitch"
+             data-role="flipswitch"
+             data-template-bind='[{"attribute": "id", "value": "properties.id",
+                                  "formatter": "prependChars", "formatOptions": "classificationDiagnoseSwitch"}]'>
+    </div>
+  </div>
+</li>
+</script>
+
+
+<script type="text/html" id="configEntryFileInputTemplate">
+<div data-role="fieldcontain"
+     class="js-subtab"  data-is-new-diagnose-file="false"
+     data-template-bind='[{"attribute": "data-insert-id", "value": "insertId"},
+                         {"attribute": "data-is-new-diagnose-file", "value": "isNewDiagnoseFile"},
+                        {"attribute": "data-diagnose-tab-config-index", "value": "tabIndex"},
+                        {"attribute": "data-diagnose-tab-subtabfile-index", "value": "subTabIndex"}]'>
+
+  <label>Controls File</label>
+  <input type="text" data-inline="true" value=""
+         class="js-diagnose-file-name"
+         data-template-bind='[{"attribute": "value", "value": "fileName"},
+                              {"attribute": "data-diagnose-tab-config-index", "value": "tabIndex"},
+                              {"attribute": "data-diagnose-tab-subtabfile-index", "value": "subTabIndex"}]' />
+
+  <input type="file" data-inline="true" value=""
+         class="js-diagnose-file"
+         data-template-bind='[{"attribute": "value", "value": "fileName"},
+                              {"attribute": "data-diagnose-tab-config-index", "value": "tabIndex"},
+                              {"attribute": "data-diagnose-tab-subtabfile-index", "value": "subTabIndex"}]' />
+
+
+  <div data-role="fieldcontain">
+    <input type="checkbox"
+         class="categorize-subtab-flipswitch" data-wrapper-class="custom-size-flipswitch"
+         data-role="flipswitch"  data-on-text="Classify On" data-off-text="Classify Off"
+         data-template-bind='[{"attribute": "value", "value": "classify"},
+                              {"attribute": "data-diagnose-tab-config-index", "value": "tabIndex"},
+                              {"attribute": "data-diagnose-tab-subtabfile-index", "value": "subTabIndex"}]' />
+  </div>
+
+
+</div>
+
+</script>
+<!-- End: Config Tab template -->
+
+<!-- Start: Tabs template -->
+
+<script type="text/html" id="tabTemplate">
+  <div data-content-prepend="children"
+        data-format="nestedTemplateFormatter"
+        data-format-options='{"template":"#tabForCollapsibleTemplate"}'>
+  </div>
+</script>
+<script type="text/html" id="tabForCollapsibleTemplate">
+  <div data-role="navbar">
+    <ul data-content-prepend="children"
+        data-format="nestedTemplateFormatter"
+        data-format-options='{"template":"#tabItemForCollapsibleTemplate"}'>
+    </ul>
+  </div>
+</script>
+<script type="text/html" id="tabItemForCollapsibleTemplate">
+  <li>
+      <a data-ajax="false"
+         data-content="properties.heading"
+         data-template-bind='[{"attribute": "href", "value": "properties.id", "formatter": "prependChars", "formatOptions": "#"}]'
+         >
+      </a>
+    </li>
+</script>
+
+<script type="text/html" id="tabNavbarTemplate">
+  <div data-role="navbar">
+    <ul data-content-prepend="children"
+        data-format="nestedTemplateFormatter"
+        data-format-options='{"template":"#tabItemTemplate"}'>
+    </ul>
+  </div>
+</script>
+
+<script type="text/html" id="tabItemTemplate">
+  <li>
+    <a data-ajax="false"
+       data-content="properties.heading"
+       data-template-bind='[{"attribute": "href", "value": "properties.id", "formatter": "prependChars", "formatOptions": "#"}]'
+       >
+    </a>
+  </li>
+</script>
+
+<!-- End: Tabs template -->
+
+<!-- Start: ListView template -->
+<script type="text/html" id="listViewTemplate">
+    <ul data-role="listview"
+        data-inset="true"></ul>
+</script>
+
+<script type="text/html" id="listItemTemplate">
+    <li data-content="type"></li>
+</script>
+<!-- End: ListView template -->
+
+<!-- Start: Button template -->
+<script type="text/html" id="buttonTmpl">
+  <a data-role="button"
+     data-id="properties.id"
+     data-content="properties.text"
+     data-transition="properties.transition"
+     data-template-bind='[{"attribute": "data-transition", "value": "properties.transition"},
+                         {"attribute": "data-text", "value": "properties.text"},
+                         {"attribute": "data-icon", "value": "properties.icon"},
+                         {"attribute": "data-inline", "value": "properties.inline"},
+                         {"attribute": "data-iconpos", "value": "properties.iconpos"},
+                         {"attribute": "href", "value": "properties.url"}]'
+     >Button
+  </a>
+</script>
+<!-- End: Button template -->
+      
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
