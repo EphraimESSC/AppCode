@@ -33,7 +33,12 @@
          ng-controller="PanelController">
       <h4>Categories Panel</h4>
 
-      <span>{{sharedData.RecentlySelectedControlDetails.label}} : {{sharedData.RecentlySelectedControlDetails.valueLabel}}</span>
+      <span>
+        <!-- {{sharedData.RecentlySelectedControlDetails.labelPrefix}} : -->
+        {{sharedData.RecentlySelectedControlDetails.label}}
+        {{sharedData.RecentlySelectedControlDetails.label ? " : " : "" }}
+        {{sharedData.RecentlySelectedControlDetails.valueLabel}}
+      </span>
       <!-- <span>{{sharedData.RecentlySelectedControlDetails}}</span> -->
       <div id="categoriesSection"></div>
 
@@ -364,10 +369,11 @@
   </div>
   <div id="{{tab.id}}" ng-repeat="tab in controls.children">
     <div ng-if="tab.children[0].type === 'Tabs'">
-      <r controls="tab" unique-property="{{tab.id}}"></r>
+      <r controls="tab" unique-property="{{tab.id}}" tab-hierarchy-headings="{{tab.tabHierarchyHeadings}}"></r>
     </div>
     <div ng-if="tab.children[0].type !== 'Tabs'">
-      <r ng-repeat="d in tab.children" controls="d" unique-property="{{tab.id}}"></r>
+      <r ng-repeat="d in tab.children" controls="d"
+        unique-property="{{tab.id}}" tab-hierarchy-headings="{{tab.tabHierarchyHeadings}}"></r>
     </div>
   </div>
 </script>
@@ -958,7 +964,6 @@
 <!-- End: Button template -->
 
 </div>
-
   <script src="min/aCode/angularCode.min.js"></script>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
