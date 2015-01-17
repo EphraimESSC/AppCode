@@ -14,9 +14,9 @@
     <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="lib/angular.min.js"></script>
 
-    <script src="javascripts/lib.min.js"></script>
+    <script src="min/libCode/lib.min.js"></script>
     
-    <script src="javascripts/app.js"></script>
+    <script src="min/applicationCode/applicationCode.min.js"></script>
     
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -25,20 +25,34 @@
 
   </head>
   <body>
-    
-<div  ng-app="myapp">
+ <div ng-app="myapp">
   <div data-role="page" id="defaultPage" data-theme="b">
-    <div data-role="header" id="header">
+
+    <div data-role="panel" id="leftpanel"
+         data-position="left" data-display="overlay"
+         ng-controller="PanelController">
+      <h4>Categories Panel</h4>
+
+      <span>{{sharedData.RecentlySelectedControlDetails.label}} : {{sharedData.RecentlySelectedControlDetails.valueLabel}}</span>
+      <!-- <span>{{sharedData.RecentlySelectedControlDetails}}</span> -->
+      <div id="categoriesSection"></div>
+
+      <a href="#close" ng-click="$event.preventDefault()" data-rel="close" id="closePanelButton"
+         class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-left ui-btn-inline ui-mini">Close panel</a>
+
+    </div>
+
+    <div data-role="header" id="header" class="jqm-header">
       <h1 id="pageHeader">TCMDiagnosis</h1>
     </div>
-    <div id="content">
+    <div id="content" role="main" class="ui-content jqm-content">
 
       <div id="tabs" >
         <div data-role="navbar" id="mainTabHeader">
           <ul>
-            <!--     <li><a href="#diagnose" class="" id="diagnoseTabHeader">Diagnose</a></li> -->
+            <!--    <li><a href="#diagnose" class="" id="diagnoseTabHeader">Diagnose</a></li>-->
             <li><a href="#client" id="clientTabHeader">Client</a></li>
-            <li><a href="#diagnose" class="ui-disabled" id="diagnoseTabHeader">Diagnose</a></li>
+             <li><a href="#diagnose" class="ui-disabled" id="diagnoseTabHeader">Diagnose</a></li>
             <li><a href="#classification" class="ui-disabled" id="classificationTabHeader">Classification</a></li>
             <li><a href="#config">Config</a></li>
           </ul>
@@ -198,18 +212,20 @@
           <div id="diagnoseTabArea">
             <div ng-controller="DiagnoseController" id="DiagnoseController">
 
-              <!-- SelectedControls:
+              <!--
+              SelectedControls:
               {{SelectedControls}}
+
+             Selected Classification
+              {{sharedData.ControlCategoriesInfo}}
 
               Shared Classification Data:
               {{sharedData.classificationData}} -->
 
-              <div id="ControlsContainer">
+              <div id="ControlsContainer"> </div>
 
-
-              </div>
-
-              <a id="saveDiagnoseData" href="#" data-role="button" ng-click="saveDiagnoseItemsData()">Save Diagnose Data</a>
+              <a href="#leftpanel" ng-click="$event.preventDefault()" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini">Open Categorization Panel</a>
+              <a id="saveDiagnoseData" href="#" data-role="button" data-inline="true" ng-click="saveDiagnoseItemsData()">Save Diagnose Data</a>
             </div>
           </div>
           <!--<a id="cancelDiagnoseChanges" href="#" data-role="button" style="display: none;">Cancel</a>
@@ -218,7 +234,6 @@
 
       </div>
     </div>
-
   </div>
 
   <div id="htmlContent"></div>
@@ -227,11 +242,9 @@
   <content ng-repeat="d in controls.children" controls="d"></content>
 </script>
 
-
-  <!-- Start: SelectMenu template -->
+<!-- Start: SelectMenu template -->
 <script type="text/ng-template" id="SelectMenu">
-<div >
-<!-- <span>{{controls}}</span> -->
+<div>
   <select data-native-menu="true" class="control" id="{{controls.properties.id}}" ng-model="controls.value">
     <option ng-repeat="c in controls.properties.options.children"
          value="{{c.value}}">{{c.text}}</option>
@@ -258,7 +271,6 @@
 
 <!-- Start: ToggleSwitch Template -->
 <script type="text/ng-template" id="ToggleSwitch">
-<!-- <span>{{controls}}</span>  -->
 <div data-role="fieldcontain" >
   <label for="checkbox-based-flipswitch-{{controls.properties.id}}"></label>
   <select name="checkbox-based-flipswitch-{{controls.properties.id}}"
@@ -299,8 +311,6 @@
 
 <!-- Start: Slider Template -->
 <script type="text/ng-template" id="Slider">
-  <!-- <span>{{controls}}</span> -->
-
   <form style="padding-top: 5px; padding-bottom: 10px">
     <label for="slider-{{controls.properties.id}}">{{controls.properties.label}}</label>
     <input type="range" name="slider-{{controls.properties.id}}"
@@ -318,7 +328,6 @@
   </div>
 </script>
 <!-- End: Collapsible panel template -->
-
 
 <script type="text/ng-template" id="CheckboxGroup">
   <span>{{controls.properties.legend}}</span>
@@ -344,7 +353,6 @@
 </script>
 
 <script type="text/ng-template" id="TabRoot">
-  <!-- <span>{{controls}}</span> -->
   <tabs controls="controls"></tabs>
 </script>
 
@@ -369,7 +377,6 @@
 </script>
 
 <script type="text/ng-template" id="CategoriesTabs">
-<!-- <span>{{parent}}</span>  -->
 <div class="categories-tabs ui-body-d ui-content">
   <div data-role="navbar">
     <ul>
@@ -392,11 +399,22 @@
 </div>
 </script>
 
+<script type="text/ng-template" id="CategoriesButtonsStems">
+<div class="ui-field-contain controlgroup-block" ng-repeat="c in categorieschildren">
+  <fieldset data-role="controlgroup" data-type="horizontal">
+    <input type="checkbox" name="checkbox-bt-{{c.data.id}}"
+      id="checkbox-bt-{{c.data.id}}" ng-model="c.data.value">
+    <label for="checkbox-bt-{{c.data.id}}">{{c.data.name}}</label>
+  </fieldset>
+
+  <categories categorieschildren="c.categorieschildren" ng-show="c.data.value"></categories>
+</div>
+</script>
+
 <script type="text/ng-template" id="CategoriesButtons">
-<div class="ui-body-d ui-content" >
+<div class="" >
   <form>
     <fieldset data-role="controlgroup" data-type="horizontal">
-      <legend>{{parent.name}}</legend>
       <span ng-repeat="h in categorieschildren">
         <input type="checkbox" name="checkbox-h-{{h.data.id}}" ng-model="h.data.value"
           id="checkbox-h-{{h.data.id}}" text="Checkbox" />
@@ -404,6 +422,7 @@
       </span>
     </fieldset>
   </form>
+  <categories ng-repeat="c in categorieschildren" categorieschildren="c.categorieschildren" ng-show="c.data.value"></categories>
 </div>
 </script>
 
@@ -431,21 +450,21 @@
 </script>
 <!-- End: Classification Item Template -->
 
-<!-- Start: Grid template -->
+<!-- Start: Grid template
 <script type="text/html" id="GridTemplate">
 <div class="ui-grid-solo"
      data-template-bind='[{"attribute": "class", "value": "properties.uiClass"}]'
      ></div>
-</script>
+</script>-->
 <!-- End: Grid template -->
 
-<!-- Start: Block template -->
+<!-- Start: Block template
 <script type="text/html" id="BlockTemplate">
 <div class="ui-block-a"
      data-template-bind='[{"attribute": "class", "value": "properties.subtype",
                                "formatter": "prependChars", "formatOptions": "ui-block-"}]'
      ></div>    
-</script>
+</script>-->
 <!-- End: Block template -->
 
 
@@ -910,53 +929,6 @@
 </script>
 <!-- End: Config Tab template -->
 
-<!-- Start: Tabs template -->
-
-<script type="text/html" id="tabTemplate">
-  <div data-content-prepend="children"
-        data-format="nestedTemplateFormatter"
-        data-format-options='{"template":"#tabForCollapsibleTemplate"}'>
-  </div>
-</script>
-<script type="text/html" id="tabForCollapsibleTemplate">
-  <div data-role="navbar">
-    <ul data-content-prepend="children"
-        data-format="nestedTemplateFormatter"
-        data-format-options='{"template":"#tabItemForCollapsibleTemplate"}'>
-    </ul>
-  </div>
-</script>
-<script type="text/html" id="tabItemForCollapsibleTemplate">
-  <li>
-      <a data-ajax="false"
-         data-content="properties.heading"
-         data-template-bind='[{"attribute": "href", "value": "properties.id", "formatter": "prependChars", "formatOptions": "#"}]'
-         >
-      </a>
-    </li>
-</script>
-
-<script type="text/html" id="tabNavbarTemplate">
-  <div data-role="navbar">
-    <ul data-content-prepend="children"
-        data-format="nestedTemplateFormatter"
-        data-format-options='{"template":"#tabItemTemplate"}'>
-    </ul>
-  </div>
-</script>
-
-<script type="text/html" id="tabItemTemplate">
-  <li>
-    <a data-ajax="false"
-       data-content="properties.heading"
-       data-template-bind='[{"attribute": "href", "value": "properties.id", "formatter": "prependChars", "formatOptions": "#"}]'
-       >
-    </a>
-  </li>
-</script>
-
-<!-- End: Tabs template -->
-
 <!-- Start: ListView template -->
 <script type="text/html" id="listViewTemplate">
     <ul data-role="listview"
@@ -986,7 +958,8 @@
 <!-- End: Button template -->
 
 </div>
-      <script src="javascripts/aCode.js"></script>
+
+  <script src="min/aCode/angularCode.min.js"></script>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
