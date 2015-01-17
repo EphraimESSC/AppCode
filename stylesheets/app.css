@@ -52,3 +52,16 @@ body {
   width: 100%;
   float: none
 }
+.controlgroup-block>.ui-controlgroup-horizontal>.ui-controlgroup-controls {
+  display: block;
+}
+.controlgroup-block>.ui-controlgroup-horizontal>.ui-controlgroup-controls>.ui-checkbox {
+  display: block;
+  float: none;
+}
+.controlgroup-block>.ui-controlgroup-horizontal>.ui-controlgroup-controls>.ui-checkbox>.ui-btn {
+  text-align: center;
+}
+.controlgroup-block .ui-controlgroup-horizontal .ui-controlgroup-controls .ui-checkbox .ui-btn {
+  padding: 4px;
+}
