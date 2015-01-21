@@ -25,7 +25,8 @@
 
   </head>
   <body>
- <div ng-app="myapp">
+ 
+<div ng-app="myapp">
   <div data-role="page" id="defaultPage" data-theme="b">
 
     <div data-role="panel" id="leftpanel"
@@ -127,26 +128,18 @@
         <!-- Classification Tab contents -->
         <div id="classification" class="ui-body-d ui-content">
           <div id="classificationTabContent">
-            <div data-role="collapsible-set" id="editClassificationList"></div>
+            <!-- <div data-role="collapsible-set" id="editClassificationList" class="hide"></div> -->
 
             <div id="ClassificationListController"
                  ng-controller="ClassificationListController"
-                 data-role="collapsible-set">
+                 >
 
-              <div data-role="collapsible" data-iconpos="right" data-inset="false"
-                   data-collapsed="false"
-                   class="js-diagnose-list-item"
-                   ng-repeat="di in data.diagnoseItems">
+              <div data-role="collapsible-set" ng-include="'views/ClassificationList.html'"></div>
 
-                <h4>{{di.controlLabel}} : {{di.controlValueLabel}}</h4>    
-  
-                <controlgroup data-role="checkbox" group-data="data" >
-
-                </controlgroup>
-              </div>
+              <a id="saveClassificationChanges" href="#" data-role="button" ng-click="saveClassificationInfo()">Save</a>
             </div>
           </div>
-          <a id="saveClassificationChanges" href="#" data-role="button">Save</a>
+
         </div>
 
         <!-- Config Tab contents -->
@@ -378,9 +371,9 @@
   </div>
 </script>
 
-<script type="text/ng-template" id="CategoriesRoot">
+<!-- <script type="text/ng-template" id="CategoriesRoot">
   <categories categorieschildren="controls.categorieschildren" parent="controls" ng-show="controls.showCategory"></categories>
-</script>
+</script> -->
 
 <script type="text/ng-template" id="CategoriesTabs">
 <div class="categories-tabs ui-body-d ui-content">
