@@ -1,7 +1,3 @@
-
-<!--<div>{{data.clientId}} </div>
-<div>{{data.diagnoseName}} </div> -->
-
 <div data-role="collapsible" data-iconpos="right" data-inset="false"
                    data-collapsed="false"
                    class="js-diagnose-list-item"
@@ -9,7 +5,5 @@
 
   <h4>{{di.controlLabel}} : {{di.controlValueLabel}}</h4>
 
-  <categories categorieschildren="di.categorieschildren"
-         template-name="CategoriesButtonsStems"></categories>
+  <div ng-include="'CategoriesRoot'"></div>
 </div>
-<!-- <div>{{data}} </div> -->
