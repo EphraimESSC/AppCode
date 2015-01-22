@@ -25,7 +25,9 @@
 
   </head>
   <body>
- 
+  
+  
+  
 <div ng-app="myapp">
   <div data-role="page" id="defaultPage" data-theme="b">
 
@@ -41,7 +43,11 @@
         {{sharedData.RecentlySelectedControlDetails.valueLabel}}
       </span>
       <!-- <span>{{sharedData.RecentlySelectedControlDetails}}</span> -->
-      <div id="categoriesSection"></div>
+      <div id="categoriesSection">
+      <categories categorieschildren="sharedData.RecentlySelectedControlDetails.categoriesInfo"
+                       template-name="CategoriesButtonsStems"></categories>
+
+      </div>
 
       <a href="#close" ng-click="$event.preventDefault()" data-rel="close" id="closePanelButton"
          class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-left ui-btn-inline ui-mini">Close panel</a>
@@ -56,9 +62,9 @@
       <div id="tabs" >
         <div data-role="navbar" id="mainTabHeader">
           <ul>
-            <!--    <li><a href="#diagnose" class="" id="diagnoseTabHeader">Diagnose</a></li>-->
+            <!--    <li><a href="#diagnose" class="" id="diagnoseTabHeader">Diagnose</a></li> -->
             <li><a href="#client" id="clientTabHeader">Client</a></li>
-             <li><a href="#diagnose" class="ui-disabled" id="diagnoseTabHeader">Diagnose</a></li>
+            <li><a href="#diagnose" class="ui-disabled" id="diagnoseTabHeader">Diagnose</a></li>
             <li><a href="#classification" class="ui-disabled" id="classificationTabHeader">Classification</a></li>
             <li><a href="#config">Config</a></li>
           </ul>
@@ -131,8 +137,7 @@
             <!-- <div data-role="collapsible-set" id="editClassificationList" class="hide"></div> -->
 
             <div id="ClassificationListController"
-                 ng-controller="ClassificationListController"
-                 >
+                 ng-controller="ClassificationListController">
 
               <div data-role="collapsible-set" ng-include="'views/ClassificationList.html'"></div>
 
@@ -328,12 +333,14 @@
 <!-- End: Collapsible panel template -->
 
 <script type="text/ng-template" id="CheckboxGroup">
+<fieldset data-role="controlgroup" data-type="{{controls.properties.orientation}}">
   <span>{{controls.properties.legend}}</span>
   <checkboxgroup ng-repeat="d in controls.children"
     controls="d" parent="controls"></checkboxgroup>
+</fieldset>
 </script>
 <script type="text/ng-template" id="Checkbox">
-  <input type="checkbox" id="{{controls.properties.id}}"
+  <input type="checkbox" id="{{controls.properties.id}}" data-mini="{{parent.properties.mini}}"
     ng-model="controls.value" value="{{controls.properties.label}}" name="{{groupname}}" />
   <label for="{{controls.properties.id}}" >{{controls.properties.label}}</label>
 </script>
@@ -371,9 +378,10 @@
   </div>
 </script>
 
-<!-- <script type="text/ng-template" id="CategoriesRoot">
-  <categories categorieschildren="controls.categorieschildren" parent="controls" ng-show="controls.showCategory"></categories>
-</script> -->
+<script type="text/ng-template" id="CategoriesRoot">
+  <categories categorieschildren="di.categorieschildren"
+         template-name="CategoriesButtonsStems"></categories>
+</script>
 
 <script type="text/ng-template" id="CategoriesTabs">
 <div class="categories-tabs ui-body-d ui-content">
@@ -400,9 +408,9 @@
 
 <script type="text/ng-template" id="CategoriesButtonsStems">
 <div class="ui-field-contain controlgroup-block" ng-repeat="c in categorieschildren">
-  <fieldset data-role="controlgroup" data-type="horizontal">
+  <fieldset data-role="controlgroup" data-type="horizontal" data-class="categories">
     <input type="checkbox" name="checkbox-bt-{{c.data.id}}"
-      id="checkbox-bt-{{c.data.id}}" ng-model="c.data.value">
+      id="checkbox-bt-{{c.data.id}}" ng-model="c.data.value" class="categories">
     <label for="checkbox-bt-{{c.data.id}}">{{c.data.name}}</label>
   </fieldset>
 
@@ -435,7 +443,7 @@
         enhance-ui="{event: 'allRendered'}">
       <a href="#">{{s.data.name}}</a>
       <a href="#" data-icon="delete"
-         ng-click="deleteSubCategory(s.data.id, c.data.id)"></a>
+         ng-click="deleteSubCategory(s.data.classificationInsertId, c.data.classificationInsertId)"></a>
     </li>
   </ul>
 
@@ -957,6 +965,9 @@
 <!-- End: Button template -->
 
 </div>
+  
+  
+ 
   <script src="min/aCode/angularCode.min.js"></script>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
