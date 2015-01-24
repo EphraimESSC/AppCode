@@ -54,6 +54,7 @@ body {
 }
 .controlgroup-block>.ui-controlgroup-horizontal>.ui-controlgroup-controls {
   display: block;
+  width: 240px;
 }
 .controlgroup-block>.ui-controlgroup-horizontal>.ui-controlgroup-controls>.ui-checkbox {
   display: block;
