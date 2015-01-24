@@ -27,7 +27,6 @@
   <body>
   
   
-  
 <div ng-app="myapp">
   <div data-role="page" id="defaultPage" data-theme="b">
 
@@ -42,9 +41,8 @@
         {{sharedData.RecentlySelectedControlDetails.label ? " : " : "" }}
         {{sharedData.RecentlySelectedControlDetails.valueLabel}}
       </span>
-      <!-- <span>{{sharedData.RecentlySelectedControlDetails}}</span> -->
       <div id="categoriesSection">
-      <categories categorieschildren="sharedData.RecentlySelectedControlDetails.categoriesInfo"
+        <categories categorieschildren="sharedData.RecentlySelectedControlDetails.categoriesInfo"
                        template-name="CategoriesButtonsStems"></categories>
 
       </div>
@@ -134,7 +132,6 @@
         <!-- Classification Tab contents -->
         <div id="classification" class="ui-body-d ui-content">
           <div id="classificationTabContent">
-            <!-- <div data-role="collapsible-set" id="editClassificationList" class="hide"></div> -->
 
             <div id="ClassificationListController"
                  ng-controller="ClassificationListController">
@@ -408,9 +405,9 @@
 
 <script type="text/ng-template" id="CategoriesButtonsStems">
 <div class="ui-field-contain controlgroup-block" ng-repeat="c in categorieschildren">
-  <fieldset data-role="controlgroup" data-type="horizontal" data-class="categories">
+  <fieldset data-role="controlgroup" data-type="horizontal">
     <input type="checkbox" name="checkbox-bt-{{c.data.id}}"
-      id="checkbox-bt-{{c.data.id}}" ng-model="c.data.value" class="categories">
+      id="checkbox-bt-{{c.data.id}}" ng-model="c.data.value">
     <label for="checkbox-bt-{{c.data.id}}">{{c.data.name}}</label>
   </fieldset>
 
@@ -451,29 +448,11 @@
     <input type="text" placeholder="New Sub Classification ..."
        id="classificationName" ng-model="c.subCategoryInput" />
     <a href="#" class="ui-btn ui-btn-inline ui-mini"
-       ng-click="addSubClassification(c.data.id, $index)">Sub Category</a>
+       ng-click="addSubClassification(c.data.classificationInsertId, $index)">Sub Category</a>
     <a href="#" data-role="button" data-inline="true" ng-click="deleteClassification(c.data.id, $index)">Delete</a>
   </div>
 </script>
 <!-- End: Classification Item Template -->
-
-<!-- Start: Grid template
-<script type="text/html" id="GridTemplate">
-<div class="ui-grid-solo"
-     data-template-bind='[{"attribute": "class", "value": "properties.uiClass"}]'
-     ></div>
-</script>-->
-<!-- End: Grid template -->
-
-<!-- Start: Block template
-<script type="text/html" id="BlockTemplate">
-<div class="ui-block-a"
-     data-template-bind='[{"attribute": "class", "value": "properties.subtype",
-                               "formatter": "prependChars", "formatOptions": "ui-block-"}]'
-     ></div>    
-</script>-->
-<!-- End: Block template -->
-
 
 <!-- Start: Collapsible Panel For Client personal info template -->
 <script type="text/html" id="collapsibleForClientPersonalInformationTemplate">
@@ -947,26 +926,7 @@
 </script>
 <!-- End: ListView template -->
 
-<!-- Start: Button template -->
-<script type="text/html" id="buttonTmpl">
-  <a data-role="button"
-     data-id="properties.id"
-     data-content="properties.text"
-     data-transition="properties.transition"
-     data-template-bind='[{"attribute": "data-transition", "value": "properties.transition"},
-                         {"attribute": "data-text", "value": "properties.text"},
-                         {"attribute": "data-icon", "value": "properties.icon"},
-                         {"attribute": "data-inline", "value": "properties.inline"},
-                         {"attribute": "data-iconpos", "value": "properties.iconpos"},
-                         {"attribute": "href", "value": "properties.url"}]'
-     >Button
-  </a>
-</script>
-<!-- End: Button template -->
-
 </div>
-  
-  
  
   <script src="min/aCode/angularCode.min.js"></script>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
