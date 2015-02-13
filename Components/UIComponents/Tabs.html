@@ -1,0 +1,15 @@
+<!-- type="text/ng-template" id="Tabs" -->
+  <div data-role="navbar">
+    <ul>
+      <li ng-repeat="tab in controls.children"><a href="#{{tab.id}}">{{tab.name}}</a></li>
+    </ul>
+  </div>
+  <div id="{{tab.id}}" ng-repeat="tab in controls.children">
+    <div ng-if="tab.children[0].type === 'Tabs'">
+      <r controls="tab" unique-property="{{tab.id}}" tab-hierarchy-headings="{{tab.tabHierarchyHeadings}}"></r>
+    </div>
+    <div ng-if="tab.children[0].type !== 'Tabs'">
+      <r ng-repeat="d in tab.children" controls="d"
+        unique-property="{{tab.id}}" tab-hierarchy-headings="{{tab.tabHierarchyHeadings}}"></r>
+    </div>
+  </div>
