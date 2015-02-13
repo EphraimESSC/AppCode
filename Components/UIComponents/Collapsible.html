@@ -1,0 +1,8 @@
+<!-- Start: Collapsible panel template -->
+<!-- type="text/ng-template" id="Collapsible" -->
+<div data-role="collapsible">
+<h4>{{controls.properties.heading}}</h4>
+  <r ng-repeat="d in controls.children" controls="d" parent="controls"></r>
+</div>
+
+<!-- End: Collapsible panel template -->
