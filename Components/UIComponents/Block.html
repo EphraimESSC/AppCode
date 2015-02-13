@@ -1,0 +1,5 @@
+<!-- Start: Block template -->
+<!-- type="text/ng-template" id="Block" -->
+<div class="ui-block-{{ controls.properties.subtype || 'a' }}">
+  <r ng-repeat="d in controls.children" controls="d" parent="controls"></r>
+</div>    
