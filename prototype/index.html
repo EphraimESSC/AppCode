@@ -3,11 +3,11 @@
 <head>
 <title>Prototype</title>
 
+
   <link rel="stylesheet" href="/Libs/bootstrap-3.3.2-dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/Libs/angular-ui-tree-master/dist/angular-ui-tree.min.css" />
   <link rel="stylesheet" href="/Libs/jquery-mobile/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" href="/Libs/jquery-mobile/jquery.mobile.structure-1.4.5.min.css" />
-  <link rel="stylesheet" href="tree-app.css" />
+  <link rel="stylesheet" href="min/prototype.min.css" />
 
   <script src="/Libs/jquery/jquery-2.1.3.js"></script>
   <script src="/Libs/jquery-mobile/jquery.mobile-1.4.5.js"></script>
@@ -16,7 +16,6 @@
     .margin-lg  { margin: 10px;  }
     .padding-lg  { padding: 10px;  }
     .hidden-element { opacity: 0; }
-
     #notification { font-weight: bold; }
   </style>
 
@@ -63,14 +62,14 @@
                     <option value="ToggleSwitch">ToggleSwitch</option>
                     <option value="TextInput">TextInput</option>
                     <option value="Collapsible">Collapsible</option>
-                    <!--<option value="Text">Text</option> -->
+                    <option value="Text">Text</option>
                   </select>
                   <a href="#" class="ui-btn" ng-click="add()">Add</a>
                 </div>
               </div>
 
             </div>
-            <div style="height: 600px; overflow-y: auto"
+            <div style="max-height: 600px; overflow-y: auto"
                  class="ui-block-b padding-vlg"
                  ng-controller="PreviewControlsController as p">
               <h4>Preview</h4>
@@ -87,28 +86,8 @@
     </div>
   </div>
 </div>
-  <script src="/Libs/angular-1.3.8/angular.js"></script>
-  <script src="/Libs/angular-ui-tree-v2.0.13.js"></script>
+  <script src="min/prototype.min.js"></script>
 
-  <script src="/Components/UIComponents/initModule.js"></script>
-  <script src="/Components/UIComponents/Services/DirectiveCreateService.js"></script>
-
-  <script src="/Components/UIComponents/RoleDirective.js"></script>
-  <script src="/Components/UIComponents/enhanceUIDirective.js"></script>
-  <script src="/Components/UIComponents/CategoriesDirective.js"></script>
-  <script src="/Components/UIComponents/DirectiveHelperFunctions.js"></script>
-  <script src="/Components/UIComponents/DirectiveHelperService.js"></script>
-
-  <script src="/AppCode/aCode/aDataFactory.js"></script>
-
-  <script src="initTreePrototype.js"></script>
-  <script src="ListData.js"></script>
-  <script src="ControlsService.js"></script>
-  <script src="Notification.js"></script>
-
-  <script src="PreviewControlsController.js"></script>
-  <script src="ShowJSONTreeCtrl.js"></script>
-  <script src="MainCtrl.js"></script>
 
 </body>
 </html>
