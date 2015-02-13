@@ -1,0 +1,8 @@
+<!-- Start: SelectMenu template -->
+<!-- type="text/ng-template" id="SelectMenu" -->
+<div>
+  <select data-native-menu="true" class="control" id="{{controls.properties.id}}" ng-model="controls.value">
+    <option ng-repeat="c in controls.properties.options.children"
+         value="{{c.value}}">{{c.text}}</option>
+  </select>
+</div>
