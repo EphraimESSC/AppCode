@@ -1,0 +1,15 @@
+
+<!-- Start: ToggleSwitch Template -->
+<!-- type="text/ng-template" id="ToggleSwitch" -->
+<div data-role="fieldcontain" >
+  <div>
+    <label for="checkbox-based-flipswitch-{{controls.properties.id}}">{{controls.properties.label}}</label>
+  </div>
+  <select name="checkbox-based-flipswitch-{{controls.properties.id}}"
+          id="checkbox-based-flipswitch-{{controls.properties.id}}"
+          data-role="flipswitch"
+          ng-model="controls.value">
+    <option value="false">{{controls.properties.label2}}</option>
+    <option value="true">{{controls.properties.label1}}</option>
+  </select>
+</div>
