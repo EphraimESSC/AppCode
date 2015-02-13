@@ -1,0 +1,10 @@
+<!-- Start: Slider Template -->
+<!-- type="text/ng-template" id="Slider" -->
+<form style="padding-top: 5px; padding-bottom: 10px">
+  <label for="slider-{{controls.properties.id}}">{{controls.properties.label}}</label>
+  <input type="range" name="slider-{{controls.properties.id}}"
+         id="slider-{{controls.properties.id}}" min="0" max="100" value="0"
+         data-default-value="0" ng-model="controls.value" />
+</form>
+
+<!-- End: Slider Template -->
