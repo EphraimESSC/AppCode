@@ -1,0 +1,6 @@
+<!-- type="text/ng-template" id="CheckboxGroup" -->
+<fieldset data-role="controlgroup" data-type="{{controls.properties.orientation}}">
+  <span>{{controls.properties.legend}}</span>
+  <checkboxgroup ng-repeat="d in controls.children"
+    controls="d" parent="controls"></checkboxgroup>
+</fieldset>
