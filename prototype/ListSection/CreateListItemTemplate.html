@@ -1,0 +1,19 @@
+<input id="listItemNameInput" type="text" ng-model="createItemCtrl.model.itemLabel"
+       placeholder="New List Item ..."  / >
+<select ng-model="createItemCtrl.model.itemType">
+  <option value="">-- Select Control --</option>
+  <option value="Checkbox">Checkbox</option>
+  <option value="CheckboxGroup">Checkbox Group</option>
+  <option value="RadioButton">Radio Button</option>
+  <option value="RadioGroup">Radio Group</option>
+  <option value="Div">Div</option>
+  <option value="Slider">Slider</option>
+  <option value="Content">Content</option>
+  <option value="ToggleSwitch">Toggle Switch</option>
+  <option value="TextInput">Text Input</option>
+  <option value="Collapsible">Collapsible</option>
+  <option value="Text">Text</option>
+</select>
+<a href="#" class="ui-btn" ng-click="createItemCtrl.add()">Add</a>
+
+<a href="#" class="ui-btn" ng-click="createItemCtrl.duplicate()">Duplicate</a>
