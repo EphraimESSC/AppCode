@@ -1,0 +1,42 @@
+<table data-role="table" class="table ui-responsive ui-shadow" id="myTable">
+  <thead>
+    <tr>
+      <th>Property Name</th>
+      <th data-priority="1">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="p in serviceValues.selected.item.fieldsInfo" ng-if="p.fieldName">
+      
+      <td ng-bind="p.fieldName || p.fieldPath"></td>
+      
+      <td ng-if="p.fieldType === 0">
+        <input type="text" ng-model="p.fieldValue" ng-keyup="onChangeValue(p.fieldPath, p.fieldValue)" />
+      </td>
+      
+      <td ng-if="p.fieldType === 1">
+        <input type="checkbox" ng-model="p.fieldValue" ng-change="onChangeValue(p.fieldPath, p.fieldValue)" />
+      </td>
+      
+      <td ng-if="p.fieldType === 2">
+        <select ng-model="p.fieldValue"  ng-change="onChangeValue(p.fieldPath, p.fieldValue)">
+          <option ng-repeat="o in p.fieldOptions"
+                  value="{{o.value}}"
+                  ng-bind="o.display"
+                  ng-selected="o.value === p.fieldValue">
+          </option>
+        </select>
+      </td>
+      
+      <td ng-if="p.fieldType !== 0 && p.fieldType !== 1 && p.fieldType !== 2 && p.fieldType !== 3">
+        <input type="text" ng-model="p.fieldValue" ng-keyup="onChangeValue(p.fieldPath, p.fieldValue)" />
+      </td>
+      
+    </tr>
+
+  </tbody>
+</table>
+
+<a class="ui-btn" ng-click="saveChanges(p.fieldPath)">Save Changes</a>
+
+<!-- <pre class="code">{{ serviceValues.selected.item.fieldsInfo | json }}</pre> -->
