@@ -48,7 +48,7 @@
       var defer = $q.defer();
       deferedArray.push(defer.promise);
 
-      $http.get('/app/prototype/Components/UIComponents/templates/' + item + '.html').success(function(data) {
+      $http.get('/app/Components/UIComponents/templates/' + item + '.html').success(function(data) {
         $templateCache.put(item, data);
         defer.resolve();
       });
