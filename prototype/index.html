@@ -3,21 +3,11 @@
 <head>
 <title>Prototype</title>
 
-
+  
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 
-  <link rel="stylesheet" href="min/prototype.min.css" />
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-
-  <style>
-    .margin-lg  { margin: 10px;  }
-    .padding-lg  { padding: 10px;  }
-    .hidden-element { opacity: 0; }
-    #notification { font-weight: bold; }
-  </style>
+  <link rel="stylesheet" href="code/prototype.css" />
 
 </head>
 <body>
@@ -31,62 +21,68 @@
         <div class="col-lg-12">
 
           <div class="ui-grid-a" >
-            <div class="ui-block-a padding-lg" ng-controller="MainCtrl">
-              <h4>Draggable Tree</h4>
-              <div ui-tree="options"
-                   style="max-height: 400px; overflow-y: auto; border-bottom: 1px solid #ccc; margin-bottom-20px;">
-                <ol ui-tree-nodes ng-model="listControls" >
-                  <li ng-repeat="item in listControls" ui-tree-node ng-include="'items_renderer.html'"></li>
-                </ol>
+            <div class="ui-block-a padding-lg" >
+              <div class="col-xs-12" ng-controller="MainCtrl">
+                <h4>Draggable Tree</h4>
+                <div class="controls-tree-wrapper" ui-tree=" options" >
+
+                  <ol ui-tree-nodes ng-model="model.serviceValues.selected.list.controls" >
+                    <li ng-repeat="item in model.serviceValues.selected.list.controls track by $index"
+                        ui-tree-node ng-include="'ListSection/items_renderer.html'"></li>
+                  </ol>
+                </div>
               </div>
 
               <div class="row">
-                <div id="notification" class="text-info col-lg-12 margin-lg">
 
+                <div ng-controller="NotificationsController as n"  id="notification"
+                     class="text-info col-lg-12 margin-lg" ng-bind="n.model.notifications[0]"></div>
+
+                <div class="col-lg-6" ng-controller="CreateListController as c"
+                     ng-include="'ListSection/CreateListTemplate.html'">
                 </div>
-                <div class="col-lg-6">
 
-                  <input type="text" ng-model="formItem.properties.label" placeholder="New List Item ..."  / >
-                  <a href="#" class="ui-btn" ng-click="createList()">Create New List</a>
-                </div>
-
-                <div class="col-lg-6">
-                  <select ng-model="formItem.type">
-                    <option value="">-- Select Control --</option>
-                    <option value="Checkbox">Checkbox</option>
-                    <option value="CheckboxGroup">CheckboxGroup</option>
-                    <option value="RadioButton">Radio button</option>
-                    <option value="Div">Div</option>
-                    <option value="Slider">Slider</option>
-                    <option value="Content">Content</option>
-                    <option value="ToggleSwitch">ToggleSwitch</option>
-                    <option value="TextInput">TextInput</option>
-                    <option value="Collapsible">Collapsible</option>
-                    <option value="Text">Text</option>
-                  </select>
-                  <a href="#" class="ui-btn" ng-click="add()">Add</a>
+                <div class="col-lg-6" ng-controller="CreateListItemController as createItemCtrl"
+                     ng-include="'ListSection/CreateListItemTemplate.html'">
                 </div>
               </div>
 
             </div>
             <div style="max-height: 600px; overflow-y: auto"
                  class="ui-block-b padding-vlg"
-                 ng-controller="PreviewControlsController as p">
-              <h4>Preview</h4>
-              <div ng-repeat="l in p.controlsHandle.controls">
+                 ng-controller="PreviewControlsController">
+              <h4>Preview</h4> <a class="ui-btn ui-btn-inline" ng-click="updatePreview()">Update Preview</a>
+              <div ng-repeat="l in serviceValues.selected.list.controls track by $index">
                 <r controls="l"></r>
               </div>
+              <categories categorieschildren="controlsHandle.controls.categorieschildren"
+                       template-name="CategoriesButtonsStems"></categories>
             </div>
           </div>
 
         </div>
 
+        <div class="col-xs-6" ng-controller="PropertiesController"
+             ng-include="'ListSection/PropertiesTemplate.html'">
+        </div>
+
+        <div class="col-lg-6" ng-controller="ShowJSONTreeController as s" ng-hide="true">
+          <h3>Full tree</h3>
+          <pre class="code">{{ s.list | json }}</pre>
+        </div>
       </div>
 
     </div>
   </div>
 </div>
-  <script src="min/prototype.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="code/angular.min.js"></script>
+  
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.min.js"></script>
+  
+  <script src="code/prototype.js"></script>
 
 
 </body>
