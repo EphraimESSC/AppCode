@@ -1,0 +1,14 @@
+<input id="listNameInput" type="text" ng-model="c.model.listName" placeholder="List Name ..."  / >
+
+<select ng-model="c.model.section">
+  <option value=""> -- Select section -- </option>
+  <option value="diagnose">Diagnose Section</option>
+  <option value="categories">Categories Section</option>
+  <option value="personalData">Personal Data Section</option>
+</select>
+
+<a href="#" class="ui-btn" ng-click="c.createList()">Create New List</a>
+
+<ul>
+  <li ng-repeat="l in c.model.allListNames track by $index" ng-bind="l"></li>
+</ul>
