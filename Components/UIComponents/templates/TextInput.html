@@ -2,8 +2,16 @@
 <!-- type="text/ng-template" id="TextInput" -->
 
 <div data-role="fieldcontain">
+  
   <label>{{controls.properties.label}}</label>
+  
   <input id="{{controls.properties.id}}"
-         type="text"
-         ng-model="controls.value" />
+         type="{{controls.properties.type || 'text'}}"
+         placeholder="{{controls.properties.hint}}"
+         
+         data-mini="{{controls.properties.mini || 'false'}}"
+         
+         ng-disabled="controls.properties.disabled"
+         ng-model="controls.value"
+         />
 </div>
