@@ -7,9 +7,14 @@
   </div>
   <select name="checkbox-based-flipswitch-{{controls.properties.id}}"
           id="checkbox-based-flipswitch-{{controls.properties.id}}"
+          
           data-role="flipswitch"
-          ng-model="controls.value">
-    <option value="false">{{controls.properties.label2}}</option>
-    <option value="true">{{controls.properties.label1}}</option>
+          data-mini="{{controls.properties.mini}}"
+          
+          ng-model="controls.value"
+          ng-disabled="controls.properties.disabled">
+    
+    <option value="false">{{controls.properties.label1 || "No"}}</option>
+    <option value="true">{{controls.properties.label2 || "Yes"}}</option>
   </select>
 </div>
