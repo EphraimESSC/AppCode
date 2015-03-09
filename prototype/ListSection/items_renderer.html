@@ -1,12 +1,13 @@
 <!-- Nested list template -->
 <div ui-tree-handle>
   <a ng-show="isContainer(item.type)"
-     style="margin: 0" data-nodrag ng-click="toggle(this)" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-notext"
-          ng-class="{'ui-icon-plus': collapsed, 'ui-icon-minus': !collapsed}">
+     style="margin: 0" data-nodrag ng-click="toggle(this)"
+     class="glyphicon glyphicon-plus-sign"
+          ng-class="{'glyphicon-plus-sign': collapsed, 'glyphicon-minus-sign': !collapsed}">
   </a>
   <span>{{item.type}} {{item.properties.label ? " : " + item.properties.label : ""}}</span>
 
-  <a class="pull-right ui-input-btn ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all"
+  <a class="pull-right glyphicon glyphicon-remove"
      data-nodrag ng-click="remove(this)" style="margin: 0">
     <span class=""></span>
   </a>
