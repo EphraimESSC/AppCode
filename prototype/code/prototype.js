@@ -18,7 +18,7 @@
   function Run ($templateCache, $http, $q, DirectiveCreateService) {
 
     var templateItems = [
-        "Filterable",
+        //"Filterable",
         "Tabs",
         "RadioGroup",
         "CheckboxGroup",
@@ -50,7 +50,7 @@
       var defer = $q.defer();
       deferedArray.push(defer.promise);
 
-      $http.get('/Components/UIComponents/templates/' + item + '.html').success(function(data) {
+      $http.get('/app/Components/UIComponents/templates/' + item + '.html').success(function(data) {
         $templateCache.put(item, data);
         defer.resolve();
       });
