@@ -1,3 +1,4 @@
+
 <table data-role="table" class="table ui-responsive ui-shadow" id="myTable">
   <thead>
     <tr>
@@ -31,12 +32,12 @@
       <td ng-if="p.fieldType !== 0 && p.fieldType !== 1 && p.fieldType !== 2 && p.fieldType !== 3">
         <input type="text" ng-model="p.fieldValue" ng-keyup="onChangeValue(p.fieldPath, p.fieldValue)" />
       </td>
-      
+
     </tr>
 
   </tbody>
 </table>
 
-<a class="ui-btn" ng-click="saveChanges(p.fieldPath)">Save Changes</a>
+<a class="ui-btn ui-btn-inline ui-mini" ng-click="saveChanges(p.fieldPath)">Save Changes</a>
 
 <!-- <pre class="code">{{ serviceValues.selected.item.fieldsInfo | json }}</pre> -->

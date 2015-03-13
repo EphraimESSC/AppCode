@@ -2,7 +2,7 @@
        placeholder="New List Item ..."  / >
 
 
-<select ng-model="createItemCtrl.model.itemType" data-native-menu="true"
+<select data-mini="true" ng-model="createItemCtrl.model.itemType" data-native-menu="true"
          ng-click="$event.preventDefault();" ng-click-preventdefault>
   <option value="">-- Select Control --</option>
   <option value="SelectMenu">SelectMenu</option>
@@ -23,17 +23,17 @@
   <option value="CollapsibleSet">CollapsibleSet</option>
   <option value="Text">Text</option>
 </select>
-<a href="#" class="ui-btn" ng-click="createItemCtrl.add()">Add</a>
+<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="createItemCtrl.add()">Add</a>
 
-<a href="#" class="ui-btn" ng-click="createItemCtrl.duplicate()">Duplicate</a>
+<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="createItemCtrl.duplicate()">Duplicate</a>
 
-<input type="file" class="js-import-file" />
+<input type="file" class="js-import-file"  data-mini="true"  />
 
-<a href="#" class="ui-btn" ng-click="createItemCtrl.importAction()">Import</a>
+<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="createItemCtrl.importAction()">Import</a>
 
 <!-- <textarea ng-model="createItemCtrl.csvData"></textarea> -->
 
-<a href="#" class="ui-btn" ng-click="createItemCtrl.exportAction()">Export</a>
+<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="createItemCtrl.exportAction()">Export</a>
 
 <div id="filesForDownload"></div>
 
