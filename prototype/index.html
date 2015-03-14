@@ -51,7 +51,7 @@
             <div style="max-height: 600px; overflow-y: auto"
                  class="ui-block-b padding-vlg"
                  ng-controller="PreviewControlsController">
-              <h4>Preview</h4> <a class="ui-btn ui-btn-inline" ng-click="updatePreview()">Update Preview</a>
+              <h4>Preview</h4> <a class="ui-btn ui-btn-inline ui-mini" ng-click="updatePreview()">Update Preview</a>
               <div ng-repeat="l in serviceValues.selected.list.controls track by $index">
                 <r controls="l"></r>
               </div>
