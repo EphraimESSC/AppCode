@@ -1,14 +1,30 @@
 <input id="listNameInput" type="text" ng-model="c.model.listName" placeholder="List Name ..."  / >
 
-<!-- <select ng-model="c.model.section">
+<select ng-model="c.model.section" ng-change="c.onChangeSection()">
   <option value=""> -- Select section -- </option>
   <option value="diagnose">Diagnose Section</option>
   <option value="categories">Categories Section</option>
-  <option value="personalData">Personal Data Section</option>
-</select> -->
+  <!-- <option value="personalData">Personal Data Section</option> -->
+</select>
 
 <a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="c.createList()">Create New List</a>
 
-<ul>
-  <li ng-repeat="l in c.model.allListNames track by $index" ng-bind="l"></li>
-</ul>
+<legend>Lists</legend>
+
+<form>
+  <fieldset data-role="controlgroup" data-mini="true"
+            ng-repeat="l in c.model.serviceValues.lists track by $index"
+            ng-repeat-single-root='true'>
+
+    <label for="{{l.listName}}" ng-click="c.onSelectList($index)">
+      <input type="radio" name="lists" id="{{l.listName}}" value="{{l.listName}}"
+             ng-checked="l.listName === c.model.serviceValues.selected.list.listName">
+      {{l.listName}} : {{l.section}}
+      <a href="javascript:;" ng-click="c.onRemoveList($index)" class="pull-right">
+        <span class="glyphicon glyphicon-remove"></span>
+      </a>
+    </label>
+  </fieldset>
+</form>
+
+<div ng-include="'ImportExport/ImportExportTemplate.html'"></div>

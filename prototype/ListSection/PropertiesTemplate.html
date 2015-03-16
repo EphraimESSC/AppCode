@@ -1,5 +1,6 @@
 
-<table data-role="table" class="table ui-responsive ui-shadow" id="myTable">
+<table data-role="table" class="table ui-responsive ui-shadow" id="myTable"
+       ng-show="serviceValues.selected.item.fieldsInfo.length > 0">
   <thead>
     <tr>
       <th>Property Name</th>
@@ -38,6 +39,9 @@
   </tbody>
 </table>
 
-<a class="ui-btn ui-btn-inline ui-mini" ng-click="saveChanges(p.fieldPath)">Save Changes</a>
+<a class="ui-btn ui-btn-inline ui-mini" ng-click="saveChanges(p.fieldPath)"
+   ng-show="serviceValues.selected.item.fieldsInfo.length > 0">
+  Save Changes
+</a>
 
 <!-- <pre class="code">{{ serviceValues.selected.item.fieldsInfo | json }}</pre> -->

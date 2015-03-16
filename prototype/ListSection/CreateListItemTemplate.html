@@ -5,11 +5,14 @@
 <select data-mini="true" ng-model="createItemCtrl.model.itemType" data-native-menu="true"
          ng-click="$event.preventDefault();" ng-click-preventdefault>
   <option value="">-- Select Control --</option>
+  <option value="CategoriesButtons">CategoriesButtons</option>
+  <option value="CategoriesButtonsStems">CategoriesButtonsStems</option>
+  
   <option value="SelectMenu">SelectMenu</option>
   <option value="Option">Option</option>
   <option value="Tabs">Tabs</option>
   <option value="TabRoot">TabRoot</option>
-  <!--<option value="Filterable">Filterable</option> -->
+  
   <option value="Checkbox">Checkbox</option>
   <option value="CheckboxGroup">Checkbox Group</option>
   <option value="RadioButton">Radio Button</option>
@@ -27,14 +30,3 @@
 
 <a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="createItemCtrl.duplicate()">Duplicate</a>
 
-<input type="file" class="js-import-file"  data-mini="true"  />
-
-<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="createItemCtrl.importAction()">Import</a>
-
-<!-- <textarea ng-model="createItemCtrl.csvData"></textarea> -->
-
-<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="createItemCtrl.exportAction()">Export</a>
-
-<div id="filesForDownload"></div>
-
-<!-- <textarea ng-model="createItemCtrl.exportData"></textarea> -->
