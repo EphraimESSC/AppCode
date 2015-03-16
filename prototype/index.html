@@ -24,11 +24,19 @@
             <div class="ui-block-a padding-lg" >
               <div class="col-xs-12" ng-controller="MainCtrl">
                 <h4>Draggable Tree</h4>
-                <div class="controls-tree-wrapper" ui-tree=" options" >
-
-                  <ol ui-tree-nodes ng-model="model.serviceValues.selected.list.controls" >
-                    <li ng-repeat="item in model.serviceValues.selected.list.controls track by $index"
-                        ui-tree-node ng-include="'ListSection/items_renderer.html'"></li>
+                <div  ng-if="model.controlsServiceValues.selected.list.section === 'diagnose'"
+                     class="controls-tree-wrapper" ui-tree=" options" >
+                  <ol  ui-tree-nodes ng-model="model.controlsServiceValues.selected.list.controls" >
+                    <li ng-repeat="item in model.controlsServiceValues.selected.list.controls track by $index"
+                        ui-tree-node ng-include="'ControlsTree/items_renderer.html'"></li>
+                  </ol>
+                </div>
+                
+                <div  ng-if="model.controlsServiceValues.selected.list.section === 'categories'" 
+                     class="controls-tree-wrapper" ui-tree=" options" >
+                  <ol  ui-tree-nodes ng-model="model.controlsServiceValues.selected.list.controls" >
+                    <li ng-repeat="item in model.controlsServiceValues.selected.list.controls track by $index"
+                        ui-tree-node ng-include="'ControlsTree/category_items_renderer.html'"></li>
                   </ol>
                 </div>
               </div>
@@ -51,12 +59,14 @@
             <div style="max-height: 600px; overflow-y: auto"
                  class="ui-block-b padding-vlg"
                  ng-controller="PreviewControlsController">
-              <h4>Preview</h4> <a class="ui-btn ui-btn-inline ui-mini" ng-click="updatePreview()">Update Preview</a>
+              <h4>Preview</h4> <a class="ui-btn ui-btn-inline" ng-click="updatePreview()">Update Preview</a>
               <div ng-repeat="l in serviceValues.selected.list.controls track by $index">
                 <r controls="l"></r>
               </div>
-              <categories categorieschildren="controlsHandle.controls.categorieschildren"
-                       template-name="CategoriesButtonsStems"></categories>
+              <span class="controlgroup-block" ng-repeat="categories in serviceValues.selected.list.controls[0].categorieschildren track by $index">
+                <categories categorieschildren="[categories]"
+                   ></categories>
+              </span>
             </div>
           </div>
 

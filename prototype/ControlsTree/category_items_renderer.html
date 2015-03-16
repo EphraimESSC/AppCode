@@ -21,6 +21,6 @@
 
 </div>
 
-<ol ui-tree-nodes="options" ng-model="item.children" ng-class="{hidden: collapsed}">
-  <li ng-repeat="item in item.children" ui-tree-node ng-include="'ListSection/items_renderer.html'"></li>
+<ol ui-tree-nodes="options" ng-model="item.categorieschildren" ng-class="{hidden: collapsed}">
+  <li ng-repeat="item in item.categorieschildren" ui-tree-node ng-include="'ControlsTree/category_items_renderer.html'"></li>
 </ol>
