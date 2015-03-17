@@ -1,7 +1,14 @@
 <input type="file" class="js-import-file"  data-mini="true"  />
 
-<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="c.importAction()">Import</a>
+<form>
+  <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+    <label><input type="radio" name="file-format" ng-model="importExportController.model.fileFormat" value="csv" /> CSV</label>
+    <label><input type="radio" name="file-format" ng-model="importExportController.model.fileFormat" value="json" /> JSON</label>
+  </fieldset>
+</form>
 
-<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="c.exportAction()">Export</a>
+<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="importExportController.importAction()">Import</a>
+
+<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="importExportController.exportAction()">Export</a>
 
 <div id="filesForDownload"></div>
