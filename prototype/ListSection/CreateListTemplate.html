@@ -1,13 +1,21 @@
-<input id="listNameInput" type="text" ng-model="c.model.listName" placeholder="List Name ..."  / >
+<input id="listNameInput" type="text"
+       ng-model="c.model.listName" placeholder="List Name ..."
+        / >
 
-<select ng-model="c.model.section" ng-change="c.onChangeSection()">
+<select ng-model="c.model.section" ng-change="c.onChangeSection()" data-mini="true">
   <option value=""> -- Select section -- </option>
   <option value="diagnose">Diagnose Section</option>
   <option value="categories">Categories Section</option>
   <!-- <option value="personalData">Personal Data Section</option> -->
 </select>
 
-<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="c.createList()">Create New List</a>
+<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="c.createList()"
+   ng-hide="c.model.listNameEdit">Create New List</a>
+
+<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="c.saveListName()"
+   ng-show="c.model.listNameEdit">Save List Name</a>
+<a href="#" class="ui-btn ui-btn-inline ui-mini" ng-click="c.cancelSaveListName()"
+   ng-show="c.model.listNameEdit">Cancel</a>
 
 <legend>Lists</legend>
 
@@ -20,11 +28,12 @@
       <input type="radio" name="lists" id="{{l.listName}}" value="{{l.listName}}"
              ng-checked="l.listName === c.model.serviceValues.selected.list.listName">
       {{l.listName}} : {{l.section}}
-      <a href="javascript:;" ng-click="c.onRemoveList($index)" class="pull-right">
+      <a href="javascript:;" ng-click="c.onRemoveList($event, $index)" class="pull-right">
         <span class="glyphicon glyphicon-remove"></span>
       </a>
     </label>
   </fieldset>
 </form>
 
-<div ng-include="'ImportExport/ImportExportTemplate.html'"></div>
+<div ng-include="'ImportExport/ImportExportTemplate.html'"
+     ng-controller="ImportExportController as importExportController"></div>
