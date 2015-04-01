@@ -35,6 +35,7 @@
          ng-controller="PanelController">
       <h4>Categories Panel</h4>
 
+      <pre class="code" ng-hide="true">{{sharedData.RecentlySelectedControlDetails.categoriesInfo | json}}</pre>
       <span>
         {{sharedData.RecentlySelectedControlDetails.controlLabel}}
         {{sharedData.RecentlySelectedControlDetails.controlLabel ? " : " : "" }}
@@ -67,6 +68,69 @@
           </ul>
         </div>
 
+        <!-- Config Tab contents -->
+        <div id="config" class="ui-body-d ui-content">
+          
+          <div class="ui-body-d ui-content" data-role="collapsible" data-collapsed="false">
+            <h4>Lists Config</h4>
+            <div class="ui-body-d ui-content"
+                 ng-include="'/Components/ControlsTreeModule/ControlsTreeTemplate.html'"></div>
+          </div>
+
+          <div ng-controller="DiagnoseConfigController as diagnoseConfigController"
+               ng-include="'DiagnoseConfig/DiagnoseConfigTemplate.html'">
+          </div>
+          
+          <ul id="configEventsMessages" data-role="listview"></ul>
+
+          <div id="diagnoseConfig" class="ui-body-d ui-content hide" data-role="collapsible" data-collapsed="true">
+            <h4 data-content="tabName">Config Diagnose</h4>
+            <div class="ui-body-d ui-content">
+              <ul data-role="listview" ></ul>
+            </div>
+            <div data-role="fieldcontain">
+              <a data-role="button" id="addDiagnoseTabButton">Add Diagnose</a>
+            </div>
+          </div>
+
+          <div ng-controller="ConfigureClassificationController"
+               class="ui-body-d ui-content hide" data-role="collapsible" data-collapsed="true">
+
+            <!-- {{sharedData.classificationData}} -->
+            <h4>Classified Diagnose Items</h4>
+
+            <ul data-role="listview" id="allItems">
+              <li data-role="collapsible" data-collapsed="true"
+                  ng-repeat="c in sharedData.classificationData" ng-include="'classificationItemTemplate.html'"
+                  data-inset="true" enhance-ui="{event: 'allRendered'}">
+              </li>
+            </ul>
+
+            <input type="text" placeholder="New Classification ..." ng-model="inputClassificationName" />
+
+            <div align="right">
+              <a href="#" data-role="button" data-inline="true" id="add" ng-click="addClassification()">Add</a>
+            </div>
+
+          </div>
+
+          <div id="dbSection" class="ui-body-d ui-content"  data-role="collapsible" data-collapsed="true">
+            <h4>DB</h4>
+            <a data-role="button"  id="dropDBStructureButton"
+               data-inline="true">DB Drop structure</a>
+
+            <a data-role="button"  id="createDBButton"
+               data-inline="true">DB create structure</a>
+            <a data-role="button" id="loadTestClientDataButton"
+               data-inline="true">DB Install test client data</a>
+
+            <a data-role="button" id="dbExportDataButton"
+               data-inline="true">DB Export Data</a>
+
+            <ul id="filesForDownload"></ul>
+          </div>
+        </div>
+        
         <!-- Client Tab contents -->
         <div id="client" class="ui-body-d ui-content">
 
@@ -91,7 +155,7 @@
               <input id="birthdateAndHourInput" type="datetime-local">
             </div>
             <div data-role="content">
-              <select id="clientGender" data-native-menu="false" data-format="nestedTemplateFormatter">
+              <select id="clientGender" data-native-menu="true" data-format="nestedTemplateFormatter">
                 <option value="">-- Select Gender --</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -145,64 +209,7 @@
 
         </div>
 
-        <!-- Config Tab contents -->
-        <div id="config" class="ui-body-d ui-content">
-
-          <ul id="configEventsMessages" data-role="listview"></ul>
-
-          <div id="diagnoseConfig" class="ui-body-d ui-content" data-role="collapsible" data-collapsed="true">
-            <h4 data-content="tabName">Config Diagnose</h4>
-            <div class="ui-body-d ui-content">
-              <ul data-role="listview" ></ul>
-            </div>
-            <div data-role="fieldcontain">
-              <a data-role="button" id="addDiagnoseTabButton">Add Diagnose</a>
-            </div>
-          </div>
-
-          <div ng-controller="ConfigureClassificationController"
-               class="ui-body-d ui-content" data-role="collapsible" data-collapsed="true">
-
-            <!-- {{sharedData.classificationData}} -->
-            <h4>Classified Diagnose Items</h4>
-
-            <ul data-role="listview" id="allItems">
-              <li data-role="collapsible" data-collapsed="true"
-                  ng-repeat="c in sharedData.classificationData" ng-include="'classificationItemTemplate.html'"
-                  data-inset="true" enhance-ui="{event: 'allRendered'}">
-              </li>
-            </ul>
-
-            <input type="text" placeholder="New Classification ..." ng-model="inputClassificationName" />
-
-            <div align="right">
-              <a href="#" data-role="button" data-inline="true" id="add" ng-click="addClassification()">Add</a>
-            </div>
-
-            <!-- <div ng-show="showRestartSection">
-              <span>Changes in Category or Subcategories requires Restart. </span>
-              <a href="#" data-cache=false data-role="button"
-                 data-inline="true" id="restartApp" ng-click="restartApplication()">Restart Application</a>
-            </div> -->
-          </div>
-
-          <div id="dbSection" class="ui-body-d ui-content"  data-role="collapsible" data-collapsed="true">
-            <h4>DB</h4>
-            <a data-role="button"  id="dropDBStructureButton"
-               data-inline="true">DB Drop structure</a>
-
-            <a data-role="button"  id="createDBButton"
-               data-inline="true">DB create structure</a>
-            <a data-role="button" id="loadTestClientDataButton"
-               data-inline="true">DB Install test client data</a>
-
-            <a data-role="button" id="dbExportDataButton"
-               data-inline="true">DB Export Data</a>
-
-            <ul id="filesForDownload"></ul>
-          </div>
-        </div>
-
+        
         <!-- Diagnose Tab contents -->
         <div id="diagnose">
           <input id="clientId" type="hidden" />
@@ -221,16 +228,27 @@
               {{sharedData.ControlCategoriesInfo}}
 
               Shared Classification Data:
-              {{sharedData.classificationData}} -->
+              {{sharedData.classificationData}}
 
               <div id="ControlsContainer"> </div>
 
-              <a href="#leftpanel" ng-click="$event.preventDefault()" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini">Open Categorization Panel</a>
-              <a id="saveDiagnoseData" href="#" data-role="button" data-inline="true" ng-click="saveDiagnoseItemsData()">Save Diagnose Data</a>
+              {{sharedData.controls}} -->
+              <div ng-repeat="ctrl in sharedData.controls">
+                <div ng-if="ctrl.diagnoseTabChoice !== 'useAsWebCamTab'">
+                  <r controls="ctrl" attach-categories="true" ></r>
+                </div>
+                <div ng-if="ctrl.diagnoseTabChoice === 'useAsWebCamTab'"
+                     ng-controller="WebCamSectionController as ctrl"
+                     ng-include="'/Components/WebCam/WebCamTab.html'">WebCam</div>
+              </div>
+
+              <a href="#leftpanel" ng-click="$event.preventDefault()" 
+                 class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini">Open Categorization Panel</a>
+              <a id="saveDiagnoseData" href="#" data-role="button" 
+                 data-inline="true" ng-click="saveDiagnoseItemsData()">Save Diagnose Data</a>
             </div>
           </div>
-          <!--<a id="cancelDiagnoseChanges" href="#" data-role="button" style="display: none;">Cancel</a>
-          <a id="saveDiagnoseChanges" href="#" data-role="button">Save</a> -->
+
         </div>
 
       </div>
@@ -239,198 +257,20 @@
 
   <div id="htmlContent"></div>
 
-<script type="text/ng-template" id="Content">
-  <content ng-repeat="d in controls.children" controls="d" parent="controls"></content>
-</script>
-
-<!-- Start: SelectMenu template -->
-<script type="text/ng-template" id="SelectMenu">
-<div>
-  <select data-native-menu="true" class="control" id="{{controls.properties.id}}" ng-model="controls.value">
-    <option ng-repeat="c in controls.properties.options.children"
-         value="{{c.value}}">{{c.text}}</option>
-  </select>
-</div>
-</script>
-<!-- End: SelectMenu template -->
-
-<!-- Start: Grid template -->
-<script type="text/ng-template" id="Grid">
-  <div class="{{controls.properties.uiClass || 'ui-grid-solo'}}" >
-    <r ng-repeat="d in controls.children" controls="d" parent="controls"></r>
-  </div>
-</script>
-<!-- End: Grid template -->
-
-<!-- Start: Block template -->
-<script type="text/ng-template" id="Block">
-  <div class="ui-block-{{ controls.properties.subtype || 'a' }}">
-    <r ng-repeat="d in controls.children" controls="d" parent="controls"></r>
-  </div>    
-</script>
-<!-- End: Block template -->
-
-<!-- Start: ToggleSwitch Template -->
-<script type="text/ng-template" id="ToggleSwitch">
-<div data-role="fieldcontain" >
-  <label for="checkbox-based-flipswitch-{{controls.properties.id}}"></label>
-  <select name="checkbox-based-flipswitch-{{controls.properties.id}}"
-          id="checkbox-based-flipswitch-{{controls.properties.id}}"
-          data-role="flipswitch"
-          ng-model="controls.value">
-          <option value="false">{{controls.properties.label2}}</option>
-          <option value="true">{{controls.properties.label1}}</option>
-        </select>
-</div>
-</script>
-<!-- End: ToggleSwitch Template -->
-
-<!-- Start: Text Input template -->
-<script type="text/ng-template" id="TextInput">
-  <div data-role="fieldcontain">
-    <label>{{controls.properties.label}}</label>
-    <input id="{{controls.properties.id}}"
-           type="text"
-           ng-model="controls.value" />
-  </div>
-</script>
-<!-- End: Text Input template  -->
-
-<!-- Start: Text Template -->
-<script type="text/ng-template" id="Text">
-  <h4>{{controls.properties.text}}</h4>
-</script>
-<!-- End: Text Template -->
-
-<!-- Start: Div template -->
-<script type="text/ng-template" id="Div">
-  <div class="div-widget" id="{{controls.properties.id}}">
-    <r ng-repeat="d in controls.children" controls="d" parent="controls"></r>
-  </div>
-</script>
-<!-- End: Div template  -->
-
-<!-- Start: Slider Template -->
-<script type="text/ng-template" id="Slider">
-  <form style="padding-top: 5px; padding-bottom: 10px">
-    <label for="slider-{{controls.properties.id}}">{{controls.properties.label}}</label>
-    <input type="range" name="slider-{{controls.properties.id}}"
-           id="slider-{{controls.properties.id}}" min="0" max="100" value="0"
-           data-default-value="0" ng-model="controls.value" />
-  </form>
-</script>
-<!-- End: Slider Template -->
-
-<!-- Start: Collapsible panel template -->
-<script type="text/ng-template" id="Collapsible">
-  <div data-role="collapsible">
-  <h4>{{controls.properties.heading}}</h4>
-    <r ng-repeat="d in controls.children" controls="d" parent="controls"></r>
-  </div>
-</script>
-<!-- End: Collapsible panel template -->
-
-<script type="text/ng-template" id="CheckboxGroup">
-<fieldset data-role="controlgroup" data-type="{{controls.properties.orientation}}">
-  <span>{{controls.properties.legend}}</span>
-  <checkboxgroup ng-repeat="d in controls.children"
-    controls="d" parent="controls"></checkboxgroup>
-</fieldset>
-</script>
-<script type="text/ng-template" id="Checkbox">
-  <input type="checkbox" id="{{controls.properties.id}}" data-mini="{{parent.properties.mini}}"
-    ng-model="controls.value" value="{{controls.properties.label}}" name="{{groupname}}" />
-  <label for="{{controls.properties.id}}" >{{controls.properties.label}}</label>
-</script>
-
-<script type="text/ng-template" id="RadioGroup">
-  <span>{{controls.properties.legend}}</span>
-  <radiogroup ng-repeat="d in controls.children"
-    controls="d" parent="controls" groupname="controls.groupname" parent="controls"></radiogroup>
-</script>
-
-<script type="text/ng-template" id="RadioButton">
-  <input type="radio" id="{{controls.uniqueProperty}}{{controls.properties.id}}"
-    ng-model="parent.value" value="{{controls.properties.label}}" name="{{groupname}}" />
-  <label for="{{controls.uniqueProperty}}{{controls.properties.id}}" >{{controls.properties.label}}</label>
-</script>
-
-<script type="text/ng-template" id="TabRoot">
-  <tabs controls="controls"></tabs>
-</script>
-
-<script type="text/ng-template" id="Tabs">
-  <div data-role="navbar">
-    <ul>
-      <li ng-repeat="tab in controls.children"><a href="#{{tab.id}}">{{tab.name}}</a></li>
-    </ul>
-  </div>
-  <div id="{{tab.id}}" ng-repeat="tab in controls.children">
-    <div ng-if="tab.children[0].type === 'Tabs'">
-      <r controls="tab" unique-property="{{tab.id}}" tab-hierarchy-headings="{{tab.tabHierarchyHeadings}}"></r>
-    </div>
-    <div ng-if="tab.children[0].type !== 'Tabs'">
-      <r ng-repeat="d in tab.children" controls="d"
-        unique-property="{{tab.id}}" tab-hierarchy-headings="{{tab.tabHierarchyHeadings}}"></r>
-    </div>
-  </div>
-</script>
-
-<script type="text/ng-template" id="CategoriesRoot">
-  <categories categorieschildren="di.categorieschildren"
-         template-name="CategoriesButtonsStems"></categories>
-</script>
-
-<script type="text/ng-template" id="CategoriesTabs">
-<div class="categories-tabs ui-body-d ui-content">
-  <div data-role="navbar">
-    <ul>
-      <li ng-repeat="t in categorieschildren">
-        <a href="#{{t.data.id}}">
-          <select name="flip-{{t.data.id}}" id="flip-{{t.data.id}}"
-            data-role="flipswitch" data-mini="true" ng-model="t.data.value">
-            <option value="false">Off</option>
-            <option value="true">On</option>
-          </select>
-          <span style="padding-left: 20px;">{{t.data.name}}</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="{{a.data.id}}" ng-repeat="a in categorieschildren">
-    <div>{{t.data.name}}</div>
-    <categories categorieschildren="a.categorieschildren" parent="a"></categories>
-  </div>
-</div>
-</script>
-
 <script type="text/ng-template" id="CategoriesButtonsStems">
-<div class="ui-field-contain controlgroup-block" ng-repeat="c in categorieschildren">
+
+<div class="ui-field-contain controlgroup-block" ng-repeat="c in categorieschildren track by $index">
+<!-- <pre class="code">{{c | json}}</pre>  -->
   <fieldset data-role="controlgroup" data-type="horizontal">
-    <input type="checkbox" name="checkbox-bt-{{c.data.id}}"
-      id="checkbox-bt-{{c.data.id}}" ng-model="c.data.value">
-    <label for="checkbox-bt-{{c.data.id}}">{{c.data.name}}</label>
+    <input type="checkbox" name="checkbox-bt-{{c.data.id || c.properties.id}}"
+      id="checkbox-bt-{{c.data.id || c.properties.id}}" ng-model="c.properties.value">
+    <label for="checkbox-bt-{{c.data.id || c.properties.id}}">{{c.data.name || c.properties.label}}</label>
   </fieldset>
 
-  <categories categorieschildren="c.categorieschildren" ng-show="c.data.value"></categories>
+  <categories categorieschildren="c.categorieschildren" ng-show="c.properties.value"></categories>
 </div>
-</script>
 
-<script type="text/ng-template" id="CategoriesButtons">
-<div class="" >
-  <form>
-    <fieldset data-role="controlgroup" data-type="horizontal">
-      <span ng-repeat="h in categorieschildren">
-        <input type="checkbox" name="checkbox-h-{{h.data.id}}" ng-model="h.data.value"
-          id="checkbox-h-{{h.data.id}}" text="Checkbox" />
-        <label for="checkbox-h-{{h.data.id}}">{{h.data.name}}</label>
-      </span>
-    </fieldset>
-  </form>
-  <categories ng-repeat="c in categorieschildren" categorieschildren="c.categorieschildren" ng-show="c.data.value"></categories>
-</div>
 </script>
-
 
 <!-- Start: Classification Item Template -->
 <script type="text/ng-template" id="classificationItemTemplate.html">
@@ -635,44 +475,6 @@
 <!-- End: Collapsible Panel For Client Diagnose item in client tab template -->
 
 
- <!-- Start: Collapsible Panel For Client Editing Diagnose item in client tab template : child of collapsiblePanelForClientTemplate
-<script type="text/html" id="collapsiblePanelForClientEditingDiagnoseTemplate">
-<div data-role="collapsible" data-collapsed="false" class="js-diagnose-item-container"
-     data-template-bind='[{"attribute": "data-client-id", "value": "properties.clientId"},
-                         {"attribute": "data-diagnose-id", "value": "properties.id"}]'>
-  <h5 data-content="properties.heading">Diagnose 1</h5>
-  <div data-role="collapsible-set" class="js-diagnose-collapsible-set"
-      data-template-bind='[{"attribute": "id", "value": "properties.uniqueDiagnoseListId"}]'>
-
-  </div>
-  <a href="#" data-role="button" data-inline="true" class="js-edit-diagnose-button">Edit</a>
-  <a href="#" data-role="button" data-inline="true" class="js-delete-diagnose-button">Delete</a>
-</div>
-</script>
-<!-- End: Collapsible Panel For Client Editing Diagnose item in client tab template -->
-
-<!-- Start: List Item For Client Diagnose item in client tab template
-<script type="text/html" id="collapsibleListItemInClientDiagnoseTemplate">
-  <div data-role="collapsible" data-iconpos="right" data-inset="false" class="js-diagnose-list-item"
-      data-template-bind='[{"attribute": "data-client-id", "value": "properties.clientId"},
-                          {"attribute": "data-diagnose-id", "value": "properties.diagnoseId"},
-                          {"attribute": "data-diagnose-item-id", "value": "properties.diagnoseItemId"},
-                          {"attribute": "data-diagnose-item-name", "value": "properties.heading"}]'
-      >    
-    <h4 data-content="properties.heading">Diagnose Item Name</h4>    
-    <form>      
-      <fieldset data-role="controlgroup" data-type="horizontal"
-                data-content-prepend="properties.children"
-                data-format="nestedTemplateFormatter"
-                data-format-options='{"template":"#checkboxClassificationInClientDiagnoseTemplate"}'
-                >        
-      </fieldset>
-    </form>
-  </div>
-</script>
-
-<!-- End: List Item For Client Diagnose item in client tab template -->
-
 <!-- Start: List Item For Client Diagnose item in client tab template -->
 <script type="text/ng-template" id="checkboxClassificationInClientDiagnoseTemplate.html">
   <span>{{class.name}}</span>
@@ -717,41 +519,16 @@
 </script>
 <!-- End: ToggleSwitch Template -->
 
-<!-- Start: Slider Template
-<script type="text/html" id="SliderTemplate">
-  <form data-save-control="slider">
-    <label for="slider-1" data-content="properties.label"
-           data-template-bind='[{"attribute": "for", "value": "properties.id", "formatter": "getUniqueProperty"}]'>Slider:</label>
-    <input type="range" name="slider-1" id="slider-1" min="0" max="100" value="0"
-           data-default-value="0"
-           data-template-bind='[{"attribute": "id", "value": "properties.id", "formatter": "getUniqueProperty"},
-                               {"attribute": "name", "value": "properties.id", "formatter": "getUniqueProperty"},
-                               {"attribute": "min", "value": "properties.min"},
-                               {"attribute": "max", "value": "properties.max"},
-                               {"attribute": "data-save-label", "value": "properties.label"},
-                               {"attribute": "value", "value": "properties.value"}]' />
-  </form>
-</script>
-<!-- End: Slider Template -->
-
 <!-- Start: RadioGroup template -->
-<script type="text/html" id="RadioGroupTemplate">
+<!--<script type="text/html" id="RadioGroupTemplate">
   <fieldset data-role="controlgroup" data-save-control="radio">
     <legend data-content="properties.legend"></legend>
   </fieldset>
-</script>
+</script>-->
 <!-- End: RadioGroup template -->
 
-<!-- Start: CheckboxGroup template
-<script type="text/html" id="CheckboxGroupTemplate">
-  <fieldset data-role="controlgroup" data-save-control="checkbox">
-    <legend data-content="properties.legend"></legend>
-  </fieldset>
-</script>
-<!-- End: CheckboxGroup template -->
-
 <!-- Start: Radio Button template -->
-<script type="text/html" id="RadioButtonTemplate">
+<!-- <script type="text/html" id="RadioButtonTemplate">
   <input type="radio" data-save-type="radio"
          data-template-bind='[{"attribute": "id", "value": "properties.id", "formatter": "getUniqueProperty"},
                              {"attribute": "name", "value": "properties.id", "formatter": "getFirstName"},
@@ -760,7 +537,7 @@
                              {"attribute": "data-save-label", "value": "properties.legend"}]' />
   <label data-template-bind='[{"attribute": "for", "value": "properties.id", "formatter": "getUniqueProperty"}]'
          data-content="properties.label"></label>
-</script>
+</script> -->
 <!-- End: radio template  -->
 
 <!-- Start: Checkbox template -->
@@ -928,6 +705,7 @@
 <!-- End: ListView template -->
 
 </div>
+
 
   
   <script src="min/aCode/angularCode.min.js"></script>
