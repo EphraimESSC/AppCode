@@ -29,6 +29,7 @@
   <body>
   
   
+
 <div ng-app="myapp">
   <div data-role="page" id="defaultPage" data-theme="b">
 
@@ -234,7 +235,7 @@
 
               <div id="ControlsContainer"> </div>
 
-              {{sharedData.controls}} -->
+              <pre class="code">{{sharedData.controls | json}} </pre>-->
               <div ng-repeat="ctrl in sharedData.controls">
                 <div ng-if="ctrl.diagnoseTabChoice !== 'useAsWebCamTab'">
                   <r controls="ctrl" attach-categories="true" ></r>
@@ -521,28 +522,8 @@
 </script>
 <!-- End: ToggleSwitch Template -->
 
-<!-- Start: RadioGroup template -->
-<!--<script type="text/html" id="RadioGroupTemplate">
-  <fieldset data-role="controlgroup" data-save-control="radio">
-    <legend data-content="properties.legend"></legend>
-  </fieldset>
-</script>-->
-<!-- End: RadioGroup template -->
 
-<!-- Start: Radio Button template -->
-<!-- <script type="text/html" id="RadioButtonTemplate">
-  <input type="radio" data-save-type="radio"
-         data-template-bind='[{"attribute": "id", "value": "properties.id", "formatter": "getUniqueProperty"},
-                             {"attribute": "name", "value": "properties.id", "formatter": "getFirstName"},
-                             {"attribute": "value", "value": "properties.label"},
-                             {"attribute": "data-save-id", "value": "properties.id", "formatter": "getUniqueProperty"},
-                             {"attribute": "data-save-label", "value": "properties.legend"}]' />
-  <label data-template-bind='[{"attribute": "for", "value": "properties.id", "formatter": "getUniqueProperty"}]'
-         data-content="properties.label"></label>
-</script> -->
-<!-- End: radio template  -->
-
-<!-- Start: Checkbox template -->
+<!-- Start: Checkbox template 
 <script type="text/html" id="CheckboxTemplate">
   <input type="checkbox" data-save-type="checkbox"
          data-template-bind='[{"attribute": "id", "value": "properties.id",
@@ -553,6 +534,7 @@
   <label data-template-bind='[{"attribute": "for", "value": "properties.id", "formatter": "getUniqueProperty"}]'
         data-content="properties.label"></label>
 </script>
+-->
 <!-- End: Checkbox template  -->
 
 <!-- Start: Div template -->
