@@ -3,7 +3,7 @@
   <div id="diagnoseConfigSection">
 
     <pre class="code hide">{{diagnoseConfigController.model | json}} </pre>
-    <div ng-repeat="tab in diagnoseConfigController.model.values.tabInfo track by $index"
+    <div ng-repeat="tab in diagnoseConfigController.model.values.tabInfo[0].children track by $index"
          data-role="collapsible" data-collapsed="false">
       <h4>{{tab.tabName}}</h4>
 
