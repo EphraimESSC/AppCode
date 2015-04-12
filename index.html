@@ -210,7 +210,6 @@
 
         </div>
 
-        
         <!-- Diagnose Tab contents -->
         <div id="diagnose">
           <input id="clientId" type="hidden" />
@@ -233,7 +232,7 @@
 
               <div id="ControlsContainer"> </div>
 
-              <pre class="code">{{sharedData.controls | json}} </pre>-->
+              <pre class="code">{{sharedData.controls | json}} </pre> -->
               <div ng-repeat="ctrl in sharedData.controls">
                 <div ng-if="ctrl.diagnoseTabChoice !== 'useAsWebCamTab'">
                   <r controls="ctrl" attach-categories="true" ></r>
@@ -476,16 +475,9 @@
 <!-- End: Collapsible Panel For Client Diagnose item in client tab template -->
 
 
-<!-- Start: List Item For Client Diagnose item in client tab template -->
-<script type="text/ng-template" id="checkboxClassificationInClientDiagnoseTemplate.html">
-  <span>{{class.name}}</span>
-  <input type="checkbox" class="js-diagnose-classification-item"
-         data-template-bind='[{"attribute": "data-class-id", "value": "id"},
-                             {"attribute": "data-class-name", "value": "name"}]'
-         >
-
-</script>
-
+<!-- Start: List Item For Client Diagnose item in client tab template 
+-->
+  
 <script type="text/html" id="checkboxClassificationInClientDiagnoseTemplate">
 <label>
   <span data-content="name"></span>
@@ -497,28 +489,6 @@
 </script>
 <!-- End: Collapsible panel template -->
 
-<!-- Start: Text Template -->
-<script type="text/html" id="TextTemplate">
-  <h4 data-content="properties.text">Dummy Text should not appear anywhere</h4>
-</script>
-<!-- End: Text Template -->
-
-<!-- Start: ToggleSwitch Template -->
-<script type="text/html" id="ToggleSwitchTemplate">
-<div data-role="fieldcontain" data-save-control="toggleSwitch">
-  <label for="checkbox-based-flipswitch"></label>
-  <input type="checkbox" id="checkbox-based-flipswitch"
-         data-role="flipswitch"
-         data-save-type="toggleSwitch"
-         data-default-value="off"
-         data-template-bind='[{"attribute": "id", "value": "properties.id",
-                              "formatter": "getUniqueProperty", "formatOptions": "toggleSwitch"},
-                             {"attribute": "data-save-label", "value": "properties.text"},
-                             {"attribute": "data-save-attr-label1", "value": "properties.label1"},
-                             {"attribute": "data-save-attr-label2", "value": "properties.label2"}]'>
-</div>
-</script>
-<!-- End: ToggleSwitch Template -->
 
 <!-- Start: Div template -->
 <script type="text/html" id="divTemplate">
@@ -528,49 +498,6 @@
 </script>
 <!-- End: Div template  -->
 
-<!-- Start: Text Input template -->
-<script type="text/html" id="inputTemplate">
-  <div data-role="fieldcontain" data-save-control="TextInput">
-    <label data-content="properties.label"></label>
-    <input data-template-bind='[{"attribute": "id", "value": "properties.id", "formatter": "getUniqueProperty"},
-                              {"attribute": "type", "value": "type", "formatter": "controlType"},
-                               {"attribute": "data-save-label", "value": "properties.label"},
-                               {"attribute": "data-save-type", "value": "type", "formatter": "controlType"}]' />
-  </div>
-</script>
-<!-- End: Text Input template  -->
-
-<!-- Start: Collapsible panel template -->
-<script type="text/html" id="collapsiblePanelTemplate">
-  <div data-role="collapsible">
-  <h4 data-content="properties.heading">Collapsible Area</h4>
-  </div>
-</script>
-<!-- End: Collapsible panel template -->
-
-<!-- Start: Dropdown template -->
-<script type="text/html" id="dropdownTemplate">
-<div data-role="content" data-save-control="SelectMenu">
-  <select data-native-menu="false"
-          data-content-prepend="properties.options.children"
-          data-format="nestedTemplateFormatter"
-          data-format-options='{"template":"#dropdownItemTemplate"}'
-          data-template-bind='[{"attribute": "id", "value": "properties.id",
-                              "formatter": "getUniqueProperty", "formatOptions": "SelectMenu"},
-                              {"attribute": "type", "value": "type", "formatter": "controlType"},
-                               {"attribute": "data-save-label", "value": "properties.options.label"},
-                               {"attribute": "data-save-type", "value": "type", "formatter": "controlType"}]'>
-  </select>
-</div>
-</script>
-
-<script type="text/html" id="dropdownItemTemplate">
-<option data-content="text"
-     data-template-bind='[{"attribute": "value", "value": "value"}]'
-     >
-</option>
-</script>
-<!-- End: Dropdown template -->
 
 
 <!-- Start: Config Tab template -->
@@ -654,22 +581,6 @@
                               {"attribute": "data-diagnose-tab-subtabfile-index", "value": "subTabIndex"}]' />
   </div>
 
-
-</div>
-
-</script>
-<!-- End: Config Tab template -->
-
-<!-- Start: ListView template -->
-<script type="text/html" id="listViewTemplate">
-    <ul data-role="listview"
-        data-inset="true"></ul>
-</script>
-
-<script type="text/html" id="listItemTemplate">
-    <li data-content="type"></li>
-</script>
-<!-- End: ListView template -->
 
 </div>
 
