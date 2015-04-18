@@ -36,7 +36,7 @@
          ng-controller="PanelController">
       <h4>Categories Panel</h4>
 
-      <pre class="code" ng-hide="true">{{sharedData.RecentlySelectedControlDetails.categoriesInfo | json}}</pre>
+      <!--<pre class="code">{{sharedData.RecentlySelectedControlDetails.categoriesInfo | json}}</pre> -->
       <span>
         {{sharedData.RecentlySelectedControlDetails.controlLabel}}
         {{sharedData.RecentlySelectedControlDetails.controlLabel ? " : " : "" }}
@@ -52,6 +52,9 @@
          class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-left ui-btn-inline ui-mini">Close panel</a>
 
     </div>
+
+         data-position="right" data-display="overlay">
+         <rightpanel></rightpanel>
 
     <div data-role="header" id="header" class="jqm-header">
       <h1 id="pageHeader">TCMDiagnosis</h1>
@@ -232,10 +235,11 @@
 
               <div id="ControlsContainer"> </div>
 
-              <pre class="code">{{sharedData.controls | json}} </pre> -->
+              <pre class="code">{{sharedData.controls | json}} </pre>  -->
               <div ng-repeat="ctrl in sharedData.controls">
                 <div ng-if="ctrl.diagnoseTabChoice !== 'useAsWebCamTab'">
-                  <r controls="ctrl" attach-categories="true" ></r>
+                  <!-- <r controls="ctrl" attach-categories="true" ></r> -->
+                  <showcontols controls="ctrl" attach-categories="true"></showcontols>
                 </div>
                 <div ng-if="ctrl.diagnoseTabChoice === 'useAsWebCamTab'"
                      ng-controller="WebCamSectionController as ctrl"
@@ -244,6 +248,8 @@
 
               <a href="#leftpanel" ng-click="$event.preventDefault()" 
                  class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini">Open Categorization Panel</a>
+
+
               <a id="saveDiagnoseData" href="#" data-role="button" 
                  data-inline="true" ng-click="saveDiagnoseItemsData()">Save Diagnose Data</a>
             </div>
@@ -490,12 +496,12 @@
 <!-- End: Collapsible panel template -->
 
 
-<!-- Start: Div template -->
+<!-- Start: Div template 
 <script type="text/html" id="divTemplate">
   <div class="div-widget" data-template-bind='[{"attribute": "id", "value": "properties.id"},
                                           {"attribute": "style", "value": "properties.style"}]'>
   </div>
-</script>
+</script> -->
 <!-- End: Div template  -->
 
 
