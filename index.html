@@ -83,9 +83,7 @@
                  ng-include="'/Components/ControlsTreeModule/ControlsTreeTemplate.html'"></div>
           </div>
 
-          <div ng-controller="DiagnoseConfigController as diagnoseConfigController"
-               ng-include="'DiagnoseConfig/DiagnoseConfigTemplate.html'">
-          </div>
+          <diagnose-config></diagnose-config>
           
           <ul id="configEventsMessages" data-role="listview"></ul>
 
@@ -207,7 +205,7 @@
 
               <!--{{data}} -->
 
-              <div data-role="collapsible-set" ng-include="'views/ClassificationList.html'"></div>
+              <div data-role="collapsible-set" ng-include="'AppCode/views/ClassificationList.html'"></div>
 
               <a id="saveClassificationChanges" href="#" data-role="button" ng-click="saveClassificationInfo()">Save</a>
             </div>
@@ -498,16 +496,6 @@
 </label>
 </script>
 <!-- End: Collapsible panel template -->
-
-
-<!-- Start: Div template 
-<script type="text/html" id="divTemplate">
-  <div class="div-widget" data-template-bind='[{"attribute": "id", "value": "properties.id"},
-                                          {"attribute": "style", "value": "properties.style"}]'>
-  </div>
-</script> -->
-<!-- End: Div template  -->
-
 
 
 <!-- Start: Config Tab template -->
