@@ -1,4 +1,5 @@
-<div data-role="collapsible" data-collapsed="false" class="ui-body-d ui-content">
+<div ng-controller="DiagnoseConfigController as diagnoseConfigController"
+  data-role="collapsible" data-collapsed="false" class="ui-body-d ui-content">
   <h4>Diagnose Form Config</h4>
   <div id="diagnoseConfigSection">
 
@@ -63,7 +64,7 @@
           <input type="file" id="fileinput-fc" data-inline="true"
                  ng-model="tab.importFile"
                  index="{{$index}}"
-                 onchange="angular.element(this).controller().onFileInput(this)"
+                 onchange="angular.element(this).controller().onFileInput(this, $(this).attr('index'))"
                  />
           <button class="ui-btn ui-btn-inline ui-mini hide" 
                   ng-click="diagnoseConfigController.onImportFile()">Import</button>
@@ -73,70 +74,8 @@
                 ng-click="diagnoseConfigController.onDeleteDiagnoseTab($index)">Delete Diagnose Tab</button>
 
         <!-- Tab select options -->
-        <div data-role="collapsible" data-collapsed="false">
-          <h4> Tab select options</h4>
-          <div>
-            <div class="ui-field-contain">
-              <form>
-                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-
-                  <input type="checkbox" id="useClassificationPanelInput{{$index}}"
-                         value="useClassificationPanel"
-                         ng-model="tab.useClassificationPanelInput" />
-                  <label for="useClassificationPanelInput{{$index}}">Use Classification Panel</label>
-
-                  <input type="checkbox" id="selectSpecificClassification{{$index}}"
-                         value="selectSpecificClassification"
-                         ng-model="tab.selectSpecificClassification"
-                         ng-hide="true" />
-                  <label for="selectSpecificClassification{{$index}}"
-                         ng-hide="true">Select specific classification</label>
-
-                </fieldset>
-              </form>
-
-              <div class="ui-grid-e">
-                <div class="ui-block-a"
-                    ng-show="tab.useClassificationPanelInput">
-                  <!-- <pre class="code">{{diagnoseConfigController.model.controlsServiceValues.lists | json}}</pre> -->
-                  <select data-mini="true" data-inline="true" ng-model="tab.categoriesList"
-                      class="selected-list"
-                      ng-options="v.listName for v in
-                                  diagnoseConfigController.model.controlsServiceValues.lists 
-                                  | property:'section':'categories'"
-                      ng-change="diagnoseConfigController.onChangeCategories($index)"
-                      >
-                    <option value="">-- Select List --</option>
-                  </select>
-                </div>
-
-                <div class="ui-block-b"
-                    ng-show="tab.useClassificationPanelInput && tab.selectSpecificClassification">
-                  <select data-mini="true" data-inline="true" ng-model="tab.category"
-                      class="selected-list"
-                      ng-options="v for v in tab.categoriesListArray"
-                      >
-                    <option value="">-- Select List --</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            
-            <div class="ui-field-contain">
-              <form>
-                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-
-                  <input type="checkbox" id="useAsMandatoryInput{{$index}}"
-                         value="useAsMandatory"
-                         ng-model="tab.useAsMandatoryInput" />
-                  <label for="useAsMandatoryInput{{$index}}">Use as Mandatory</label>
-
-                </fieldset>
-              </form>
-            </div>
-
-          </div>
-        </div>
+        <!--<div ng-include="'/AppCode/DiagnoseConfig/TabOptionsTemplate.html'"></div> -->
+        <tab-options></tab-options>
 
       </div>
     </div>

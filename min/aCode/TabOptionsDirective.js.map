@@ -1,0 +1,1 @@
+{"version":3,"file":"TabOptionsDirective.js","sources":["../../AppCode/DiagnoseConfig/TabOptionsDirective.js"],"names":["TabOptionsDirective","directive","restrict","templateUrl","replace","angular","module"],"mappings":";CAAA,WAIE,QAASA,KACP,GAAIC,IACFC,SAAU,IAEVC,YAAa,iDACbC,SAAS,EAGX,OAAOH,GAXTI,QAAQC,OAAO,yBACZL,UAAU,aAAcD"}
