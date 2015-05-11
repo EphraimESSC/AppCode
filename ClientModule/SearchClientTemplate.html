@@ -1,0 +1,20 @@
+<div data-role="fieldcontain">
+  <form class="ui-filterable">
+    <input id="search-autocomplete-input" data-type="search" placeholder="Search client ..."
+    data-filter-reveal="true"
+          ng-model="model.clientDataServiceValues.filterText" />
+  </form>
+  <ul id="search-autocomplete" data-role="listview" search-autocomplete
+      data-inset="true" data-filter="true"
+      data-input="#search-autocomplete-input">
+      <li ng-repeat="dataItem in model.clientDataServiceValues.filteredData track by $index"
+          >
+        <client-details details="dataItem" index="$index"></client-details>
+      </li>
+  </ul>
+
+  <a class="ui-link ui-btn ui-btn-inline ui-shadow ui-corner-all" data-inline="true" 
+    ng-click="onFetchAllClientData()">Fetch All</a>
+  <a class="ui-link ui-btn ui-btn-inline ui-shadow ui-corner-all" data-inline="true" 
+    ng-click="onClearClientData()">Clear Fetch</a>
+</div>

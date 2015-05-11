@@ -1,0 +1,60 @@
+<div>
+
+  <a data-role="button" data-transition="slidedown"
+    ng-click="onNewClientButton()">New Client</a>
+
+
+  <div class="div-widget" ng-show="model.showCreateClientForm">
+    <div data-role="fieldcontain" style="display:none">
+      <label>Id</label>
+      <input id="clientId" type="text"
+       ng-model="model.serviceValues.selectedClient.clientId">
+    </div>
+    <div data-role="fieldcontain">
+      <label>Name</label>
+      <input id="clientNameInput" type="text"
+        ng-model="model.serviceValues.selectedClient.clientName">
+    </div>
+    <div data-role="fieldcontain">
+      <label>Age</label>
+      <input id="clientAgeInput" type="number"
+       ng-model="model.serviceValues.selectedClient.clientAge">
+    </div>
+    <div data-role="fieldcontain">
+      <label>Date and hour of birth</label>
+      <input id="birthdateAndHourInput" type="datetime-local"
+      			 ng-model="model.serviceValues.selectedClient.birthdateAndHour">
+    </div>
+    <div data-role="content">
+      <select id="clientGender" data-native-menu="true"
+       ng-model="model.serviceValues.selectedClient.clientGender">
+        <option value="">-- Select Gender --</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Phone</label>
+      <input id="clientPhoneInput" type="text"
+      ng-model="model.serviceValues.selectedClient.clientPhone" />
+    </div>
+    <div data-role="fieldcontain">
+      <label>Address</label>
+      <textarea id="clientAddressInput"
+       ng-model="model.serviceValues.selectedClient.clientAddress"></textarea>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Email</label>
+      <input id="clientEmailInput" type="email"
+        ng-model="model.serviceValues.selectedClient.clientEmail" />
+    </div>
+
+    <a data-role="button" data-inline="true" ng-click="onCancelAdd()">Cancel</a>
+    <a data-role="button" data-inline="true"
+    		ng-click="onAddClient()">Save</a>
+    <a data-role="button" id="editClientButton" data-inline="true"
+     ng-show="model.serviceValues.selectedClient.showEditButton">Edit</a>
+  </div>
+
+</div>
+

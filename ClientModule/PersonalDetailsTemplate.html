@@ -1,0 +1,51 @@
+<div data-role="collapsible">
+    <h5>Personal Details</h5>
+    <div data-role="fieldcontain" style="display:none">
+      <label>Id</label>
+      <label class="client-id" type="text" data-bind="details.clientId"></label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Name:</label>
+      <label type="text" class="client-name-input" >
+          {{ details.clientName || "-" }}
+      </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Age:</label>
+      <label type="number" class="js-client-age-input" >
+        {{ details.clientAge || "-" }}
+      </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Date and hour of birth:</label>
+      <label type="datetime-local" class="js-birthdate-and-hour-input"  >
+        {{ details.birthdateAndHour || "-" }}
+      </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Gender:</label>
+      <label class="js-client-gender" data-native-menu="false" style="text-transform: capitalize;">
+        {{ details.clientGender || "-" }}
+      </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Phone:</label>
+      <label type="text" class="js-phone-input" >
+        {{ details.clientPhone || "-" }}
+      </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Address:</label>
+      <label class="js-address-input">
+        {{ details.clientAddress || "-" }}
+      </label>
+    </div>
+    <div data-role="fieldcontain">
+      <label>Email:</label>
+      <label type="email" class="js-client-email-input" >
+        {{ details.clientEmail || "-" }}
+      </label>
+    </div>
+
+    <a data-role="button" data-inline="true" >Edit</a>
+</div>

@@ -1,0 +1,30 @@
+<div data-role="collapsible-set">
+  <div ng-repeat="diagnose in diagnoseData track by $index">
+    <div data-role="collapsible" data-collapsed="false">
+
+      <h5>{{ diagnose.diagnoseName || "Diagnose"}}</h5>
+
+      <ul data-role="listview" style="list-style: none">
+        <li ng-repeat="c in diagnose.categoriesArray"
+            data-role="{{ (c.title ? 'list-divider' : '') }}"
+            ng-class="{ 'ui-li-divider':c.title, 'ui-bar-inherit':c.title, 'ui-li-static':!c.title, 'ui-body-inherit':!c.title }"
+            >
+            {{c.text}}</li>
+      </ul>
+
+      <div ng-repeat="d in diagnose.imageCollectionHolder">
+        <img ng-repeat="a in d track by $index" height="100" src="{{a.src}}" style="margin-right: 5px;" />
+      </div>
+
+      <a href="#" class="ui-link ui-btn ui-btn-inline ui-shadow ui-corner-all" data-inline="true" 
+        ng-click="onEditDiagnose($index)">Edit</a>
+
+      <a href="#" data-role="button" data-inline="true" ng-hide="true">Classify</a>
+
+      <a href="#" class="ui-link ui-btn ui-btn-inline ui-shadow ui-corner-all" data-inline="true" 
+        ng-click="onDeleteDiagnose($index)">Delete</a>
+
+    </div>
+
+  </div>
+</div>

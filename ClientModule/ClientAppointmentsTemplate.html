@@ -1,0 +1,35 @@
+<div class="js-appointments" id="" data-role="collapsible">
+  <h4>Calendar</h4>
+
+  <ul data-role="listview" class="js-appointments-ist"
+      data-template-bind='[{"attribute": "id", "value": "properties.clientId",
+                             "formatter": "prependChars", "formatOptions": "appointmentsList"},
+                       {"attribute": "data-client-id", "value": "properties.clientId"}]'
+      >
+  </ul>
+
+  <input type="datetime-local"
+         data-template-bind='[{"attribute": "id", "value": "properties.clientId",
+                             "formatter": "prependChars", "formatOptions": "appointmentDate"},
+                       {"attribute": "data-client-id", "value": "properties.clientId"}]'
+         />
+
+  <div align="right">
+    <a href="#" data-role="button" data-inline="true" class="js-edit-appointments"
+       data-template-bind='[{"attribute": "id", "value": "properties.clientId",
+                             "formatter": "prependChars", "formatOptions": "editAppointmentsButton"},
+                           {"attribute": "data-client-id", "value": "properties.clientId"}]'
+       >Edit Appointments</a>
+
+    <a href="#" data-role="button" data-inline="true" class="js-save-appointments hide"
+       data-template-bind='[{"attribute": "id", "value": "properties.clientId",
+                             "formatter": "prependChars", "formatOptions": "saveAppointmentsButton"},
+                           {"attribute": "data-client-id", "value": "properties.clientId"}]'
+       >Save Appointments</a>
+
+    <a href="#" data-role="button" data-inline="true" class="js-add-appointment"
+       data-template-bind='[{"attribute": "data-client-id", "value": "properties.clientId"}]'
+       >Add Appointment</a>
+  </div>
+</div>
+
