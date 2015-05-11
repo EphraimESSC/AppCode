@@ -1,10 +1,9 @@
 <div ng-controller="DiagnoseConfigController as diagnoseConfigController"
-  data-role="collapsible" data-collapsed="false" class="ui-body-d ui-content">
+  data-role="collapsible" data-collapsed="true" class="ui-body-d ui-content">
   <h4>Diagnose Form Config</h4>
   <div id="diagnoseConfigSection">
 
-    <!-- <pre class="code">{{diagnoseConfigController.model | json}} </pre> -->
-    <div ng-repeat="tab in diagnoseConfigController.model.values.tabInfo[0].children track by $index"
+    <div ng-repeat="tab in diagnoseConfigController.model.serviceValues.tabInfo[0].children track by $index"
          data-role="collapsible" data-collapsed="false">
       <h4>{{tab.properties.label}}</h4>
 
@@ -30,7 +29,7 @@
               <input type="radio"
                      name="radio-choice-h-{{$index}}" id="radio-choice-h-{{$index}}c"
                      value="useAsWebCamTab"
-                     ng-click="diagnoseConfigController.onChangeTabChoice()"
+                     ng-click="diagnoseConfigController.onChangeTabChoice('useAsWebCamTab')"
                      ng-model="tab.diagnoseTabChoice">
               <label for="radio-choice-h-{{$index}}c">Use as Web Cam Tab</label>
 
@@ -51,7 +50,7 @@
                   ng-options="v.listName for v in
                               diagnoseConfigController.model.controlsServiceValues.lists
                               | property:'section':'diagnose'"
-                  ng-change="diagnoseConfigController.onChangeList($index)"
+                  ng-change="diagnoseConfigController.onChangeDiagnoseList($index)"
                   >
             <option value="">-- Select List --</option>
           </select>
