@@ -4,10 +4,11 @@
 
       <h5>{{ diagnose.diagnoseName || "Diagnose"}}</h5>
 
-      <ul data-role="listview" style="list-style: none">
+      <ul data-role="listview" style="list-style: none" class="ui-listview">
         <li ng-repeat="c in diagnose.categoriesArray"
             data-role="{{ (c.title ? 'list-divider' : '') }}"
             ng-class="{ 'ui-li-divider':c.title, 'ui-bar-inherit':c.title, 'ui-li-static':!c.title, 'ui-body-inherit':!c.title }"
+            style="{{ c.title ? 'font-weight:bold' : '' }}"
             >
             {{c.text}}</li>
       </ul>
@@ -19,7 +20,8 @@
       <a href="#" class="ui-link ui-btn ui-btn-inline ui-shadow ui-corner-all" data-inline="true" 
         ng-click="onEditDiagnose($index)">Edit</a>
 
-      <a href="#" data-role="button" data-inline="true" ng-hide="true">Classify</a>
+      <a href="#" class="ui-link ui-btn ui-btn-inline ui-shadow ui-corner-all" data-inline="true" 
+        ng-click="onClassifyDiagnose($index)">Classify</a>
 
       <a href="#" class="ui-link ui-btn ui-btn-inline ui-shadow ui-corner-all" data-inline="true" 
         ng-click="onDeleteDiagnose($index)">Delete</a>
