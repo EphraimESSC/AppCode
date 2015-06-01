@@ -1,10 +1,11 @@
 <div ng-controller="DiagnoseConfigController as diagnoseConfigController"
   data-role="collapsible" data-collapsed="true" class="ui-body-d ui-content">
+  <div id="diagnoseConfigLoader"></div>
   <h4>Diagnose Form Config</h4>
   <div id="diagnoseConfigSection">
 
     <div ng-repeat="tab in diagnoseConfigController.model.serviceValues.tabInfo[0].children track by $index"
-         data-role="collapsible" data-collapsed="false">
+         data-role="collapsible" data-collapsed="false" >
       <h4>{{tab.properties.label}}</h4>
 
       <div>
@@ -74,7 +75,7 @@
 
         <!-- Tab select options -->
         <!--<div ng-include="'/AppCode/DiagnoseConfig/TabOptionsTemplate.html'"></div> -->
-        <tab-options></tab-options>
+        <tab-options ></tab-options>
 
       </div>
     </div>

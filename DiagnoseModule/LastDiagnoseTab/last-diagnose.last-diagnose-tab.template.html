@@ -1,0 +1,23 @@
+<div>
+	Last Diagnose : {{controls.lastDiagnose.diagnoseName}}
+
+	<jqm-collapsible title="{{controlDetail.valueLabel}}"
+		ng-repeat="(keyId, controlDetail) in controls.lastDiagnose.selectedControlsDetails" >
+		
+		<jqm-fieldset control-detail="controlDetail">
+			<jqm-radiobutton id="ratingNoChangeRadioId{{$index}}"
+				value="noChange" first>
+				No Change
+			</jqm-radiobutton>
+			<jqm-radiobutton id="ratingBetterRadioId{{$index}}"
+				value="better">
+				Better
+			</jqm-radiobutton>
+			<jqm-radiobutton id="ratingWorstRadioId{{$index}}"
+				value="worst" last>
+				Worst
+			</jqm-radiobutton>
+		</jqm-fieldset>
+	</jqm-collapsible>
+
+</div>

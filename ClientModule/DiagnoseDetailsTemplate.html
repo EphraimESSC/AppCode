@@ -1,17 +1,26 @@
 <div data-role="collapsible-set">
   <div ng-repeat="diagnose in diagnoseData track by $index">
-    <div data-role="collapsible" data-collapsed="false">
+    <div jqm-collapsible data-collapsed="false" title="{{ diagnose.diagnoseName || 'Diagnose'}}">
 
-      <h5>{{ diagnose.diagnoseName || "Diagnose"}}</h5>
-
-      <ul data-role="listview" style="list-style: none" class="ui-listview">
+      <ul style="list-style: none" class="ui-listview">
         <li ng-repeat="c in diagnose.categoriesArray"
             data-role="{{ (c.title ? 'list-divider' : '') }}"
             ng-class="{ 'ui-li-divider':c.title, 'ui-bar-inherit':c.title, 'ui-li-static':!c.title, 'ui-body-inherit':!c.title }"
             style="{{ c.title ? 'font-weight:bold' : '' }}"
             >
             {{c.text}}</li>
+
+        <li  class="ui-li-divider ui-bar-inherit" ng-if="diagnose.lastDiagnoseWithStatus !== null" >
+          Last diagnose status
+        </li>
+        <li ng-repeat="(key, status) in diagnose.lastDiagnoseWithStatus.selectedControlsDetails" 
+            ng-if="diagnose.lastDiagnoseWithStatus !== null"  class="ui-li-static ui-body-inherit">
+          {{status.controlLabel}} : {{status.valueLabel}} : 
+          <span style="font-weight:bold">{{status.statusValue.toUpperCase()}}</span>
+        </li>
+
       </ul>
+
 
       <div ng-repeat="d in diagnose.imageCollectionHolder">
         <img ng-repeat="a in d track by $index" height="100" src="{{a.src}}" style="margin-right: 5px;" />

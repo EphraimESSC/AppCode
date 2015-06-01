@@ -6,7 +6,7 @@
                      ng-repeat="(key, val) in classifyDiagnoseController.model.selectedControlsDetails"
                      enhance-ui>
 
-    <h4>{{key}}</h4>
+    <h4>{{val.controlLabel}}</h4>
 
     <!--<div ng-include="'CategoriesRoot'"></div>-->
     <categories categorieschildren="val.categoriesInfo"

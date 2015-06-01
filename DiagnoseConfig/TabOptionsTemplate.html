@@ -1,4 +1,4 @@
-<div data-role="collapsible" data-collapsed="false">
+<div data-role="collapsible" data-collapsed="true">
   <h4>Tab select options</h4>
   <div>
     <div class="ui-field-contain">
@@ -11,9 +11,12 @@
           <label for="useClassificationPanelInput{{$index}}">Use Classification Panel</label>
 
           <input type="checkbox" id="selectSpecificClassification{{$index}}"
-                 value="selectSpecificClassification"
-                 ng-model="tab.selectSpecificClassification" />
-          <label for="selectSpecificClassification{{$index}}">Select specific classification</label>
+                value="selectSpecificClassification"
+                ng-show="tab.properties.useClassificationPanelInput"
+                ng-model="tab.properties.selectSpecificClassification" />
+          <label for="selectSpecificClassification{{$index}}"
+                ng-show="tab.properties.useClassificationPanelInput"
+                >Select specific classification</label>
 
         </fieldset>
       </form>
@@ -21,7 +24,7 @@
       <div class="ui-grid-e">
         <div class="ui-block-a"
             ng-show="tab.properties.useClassificationPanelInput">
-          <!-- <pre class="code">{{diagnoseConfigController.model.controlsServiceValues.lists | json}}</pre> -->
+
           <select data-mini="true" data-inline="true" ng-model="tab.categoriesList"
               class="selected-list"
               ng-options="v.listName for v in
@@ -35,8 +38,9 @@
 
         <div class="ui-block-b"
             ng-show="tab.properties.useClassificationPanelInput 
-                  && tab.selectSpecificClassification">
-          <select data-mini="true" data-inline="true" ng-model="tab.category"
+                  && tab.properties.selectSpecificClassification">
+          <select data-mini="true" data-inline="true"
+              ng-model="tab.properties.selectSpecificClassificationCategory"
               class="selected-list"
               ng-options="v for v in tab.categoriesListArray"
               >
@@ -49,10 +53,9 @@
     <div class="ui-field-contain">
       <form>
         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-
           <input type="checkbox" id="useAsMandatoryInput{{$index}}"
                  value="useAsMandatory"
-                 ng-model="tab.useAsMandatoryInput" />
+                 ng-model="tab.properties.useAsMandatoryInput" />
           <label for="useAsMandatoryInput{{$index}}">Use as Mandatory</label>
 
         </fieldset>
