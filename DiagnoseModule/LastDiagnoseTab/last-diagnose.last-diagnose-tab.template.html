@@ -1,8 +1,18 @@
 <div>
-	Last Diagnose : {{controls.lastDiagnose.diagnoseName}}
+	<div>
+	{{controls | json}}
+		{{ 
+			controls.lastDiagnose === undefined
+				|| controls.lastDiagnose.selectedControlsDetails === undefined
+				|| controls.lastDiagnose.selectedControlsDetails === {}
+			? "No previous Data of Client present as this is Client's first appointment."
+			: "Last Diagnose : " + controls.lastDiagnose.diagnoseName
+		}}
+	</div>
 
-	<jqm-collapsible title="{{controlDetail.valueLabel}}"
-		ng-repeat="(keyId, controlDetail) in controls.lastDiagnose.selectedControlsDetails" >
+	<jqm-collapsible
+		ng-repeat="(keyId, controlDetail) in controls.lastDiagnose.selectedControlsDetails"
+		title="{{controlDetail.valueLabel}}" >
 		
 		<jqm-fieldset control-detail="controlDetail">
 			<jqm-radiobutton id="ratingNoChangeRadioId{{$index}}"

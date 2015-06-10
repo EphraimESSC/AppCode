@@ -15,14 +15,12 @@
           <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
               <input type="radio"
                      name="radio-choice-h-{{$index}}" id="radio-choice-h-{{$index}}a"
-                     ng-click="diagnoseConfigController.onChangeTabChoice()"
                      value="loadFromList"
                      ng-model="tab.diagnoseTabChoice">
               <label for="radio-choice-h-{{$index}}a">Load UI from List</label>
 
               <input type="radio"
                      name="radio-choice-h-{{$index}}" id="radio-choice-h-{{$index}}b"
-                     ng-click="diagnoseConfigController.onChangeTabChoice()"
                      value="importExternalJSON"
                      ng-model="tab.diagnoseTabChoice">
               <label for="radio-choice-h-{{$index}}b">Import Exernal JSON</label>
@@ -30,14 +28,12 @@
               <input type="radio"
                      name="radio-choice-h-{{$index}}" id="radio-choice-h-{{$index}}c"
                      value="useAsWebCamTab"
-                     ng-click="diagnoseConfigController.onChangeTabChoice('useAsWebCamTab')"
                      ng-model="tab.diagnoseTabChoice">
               <label for="radio-choice-h-{{$index}}c">Use as Web Cam Tab</label>
 
               <input type="radio"
                      name="radio-choice-h-{{$index}}" id="radio-choice-h-{{$index}}d"
                      value="useAsLastDiagnoseTab"
-                     ng-click="diagnoseConfigController.onChangeTabChoice()"
                      ng-model="tab.diagnoseTabChoice">
               <label for="radio-choice-h-{{$index}}d">Use as Last Diagnose Tab</label>
 
@@ -74,7 +70,6 @@
                 ng-click="diagnoseConfigController.onDeleteDiagnoseTab($index)">Delete Diagnose Tab</button>
 
         <!-- Tab select options -->
-        <!--<div ng-include="'/AppCode/DiagnoseConfig/TabOptionsTemplate.html'"></div> -->
         <tab-options ></tab-options>
 
       </div>

@@ -2,42 +2,73 @@
   <h4>Tab select options</h4>
   <div>
     <div class="ui-field-contain">
-      <form>
+      <form class="tab-classification-options-form clearfix">
         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
 
-          <input type="checkbox" id="useClassificationPanelInput{{$index}}"
-                 value="useClassificationPanel"
-                 ng-model="tab.properties.useClassificationPanelInput" />
-          <label for="useClassificationPanelInput{{$index}}">Use Classification Panel</label>
+          <label for="useClassificationPanelInput{{$index}}">
+            Use Classification Panel
+            <input type="radio" id="useClassificationPanelInput{{$index}}"
+                   value="useClassificationPanel"
+                   name="inputPanelToUseInDiagnoseTab"
+                   ng-change="diagnoseConfigController.onChangeInputPanel($index, 'useClassificationPanel')"
+                   ng-model="tab.properties.inputPanelToUseInDiagnoseTab" />
+          </label>
 
-          <input type="checkbox" id="selectSpecificClassification{{$index}}"
-                value="selectSpecificClassification"
-                ng-show="tab.properties.useClassificationPanelInput"
-                ng-model="tab.properties.selectSpecificClassification" />
+          <label for="useRightPanelInput{{$index}}">
+            Use Right Panel
+            <input type="radio" id="useRightPanelInput{{$index}}"
+                 value="useRightPanel"
+                 name="inputPanelToUseInDiagnoseTab"
+                 ng-change="diagnoseConfigController.onChangeInputPanel($index, 'useRightPanel')"
+                 ng-model="tab.properties.inputPanelToUseInDiagnoseTab" />
+          </label>
+
+        </fieldset>
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+
           <label for="selectSpecificClassification{{$index}}"
-                ng-show="tab.properties.useClassificationPanelInput"
-                >Select specific classification</label>
+                ng-show="tab.properties.inputPanelToUseInDiagnoseTab !== undefined">
+                Select specific classification
+                <input type="checkbox" id="selectSpecificClassification{{$index}}"
+                  value="selectSpecificClassification"
+                  ng-show="tab.properties.inputPanelToUseInDiagnoseTab !== undefined"
+                  ng-model="tab.properties.selectSpecificClassification" />
+          </label>
 
         </fieldset>
       </form>
 
-      <div class="ui-grid-e">
+      <div class="ui-grid-c">
         <div class="ui-block-a"
-            ng-show="tab.properties.useClassificationPanelInput">
-
-          <select data-mini="true" data-inline="true" ng-model="tab.categoriesList"
+            ng-show="tab.properties.inputPanelToUseInDiagnoseTab === 'useClassificationPanel'">
+          Left Panel
+          <select data-mini="true" data-inline="true" ng-model="tab.leftPanelCategoriesList"
               class="selected-list"
               ng-options="v.listName for v in
                           diagnoseConfigController.model.controlsServiceValues.lists 
                           | property:'section':'categories'"
-              ng-change="diagnoseConfigController.onChangeCategories($index)"
+              ng-change="diagnoseConfigController.onChangeCategories($index, 'leftPanel')"
               >
             <option value="">-- Select List --</option>
           </select>
         </div>
 
         <div class="ui-block-b"
-            ng-show="tab.properties.useClassificationPanelInput 
+          ng-show="tab.properties.inputPanelToUseInDiagnoseTab === 'useRightPanel'">
+          Right Panel
+          <select data-mini="true" data-inline="true" ng-model="tab.rightPanelCategoriesList"
+              class="selected-list"
+              ng-options="v.listName for v in
+                          diagnoseConfigController.model.controlsServiceValues.lists 
+                          | property:'section':'categories'"
+              ng-change="diagnoseConfigController.onChangeCategories($index, 'rightPanel')"
+              >
+            <option value="">-- Select List --</option>
+          </select>
+        </div>
+
+        <div class="ui-block-c"
+            ng-show="tab.properties.inputPanelToUseInDiagnoseTab 
                   && tab.properties.selectSpecificClassification">
           <select data-mini="true" data-inline="true"
               ng-model="tab.properties.selectSpecificClassificationCategory"
