@@ -14,34 +14,6 @@
         Diagnose Tab Name
         <input type="text" id="diagnoseTabName" ng-model="tab.properties.label" />
         <form>
-          <!--
-          <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-              <input type="radio"
-                     name="radio-choice-h-{{$index}}" id="radio-choice-h-{{$index}}a"
-                     value="loadFromList"
-                     ng-model="tab.diagnoseTabChoice">
-              <label for="radio-choice-h-{{$index}}a">Load UI from List</label>
-
-              <input type="radio"
-                    name="radio-choice-h-{{$index}}" id="radio-choice-h-{{$index}}b"
-                    value="importExternalJSON"
-                    ng-model="tab.diagnoseTabChoice">
-              <label for="radio-choice-h-{{$index}}b">Import Exernal JSON</label>
-
-              <input type="radio"
-                     name="radio-choice-h-{{$index}}" id="radio-choice-h-{{$index}}c"
-                     value="useAsWebCamTab"
-                     ng-model="tab.diagnoseTabChoice">
-              <label for="radio-choice-h-{{$index}}c">Use as Web Cam Tab</label>
-
-              <input type="radio"
-                     name="radio-choice-h-{{$index}}" id="radio-choice-h-{{$index}}d"
-                     value="useAsLastDiagnoseTab"
-                     ng-model="tab.diagnoseTabChoice">
-              <label for="radio-choice-h-{{$index}}d">Use as Last Diagnose Tab</label>
-
-          </fieldset>
-          -->
 
         <jqm-fieldset control-detail="tab.diagnoseTabChoice">
           <jqm-radiobutton-one id="radio-choice-h-{{$index}}a"
@@ -91,133 +63,155 @@
         <div tab-options ></div> -->
 
         <div jqm-collapsible data-collapsed="true" title="Tab select options">
-  
-  <div>
-    <div class="ui-field-contain">
-      <form class="tab-classification-options-form clearfix">
+          
+          <div>
+            <div class="ui-field-contain">
+              <form class="tab-classification-options-form clearfix">
 
-        <jqm-fieldset control-detail="tab.properties.inputPanelToUseInDiagnoseTab"
-            class="ui-controlgroup-horizontal">
+                <!-- <jqm-fieldset control-detail="tab.properties.inputPanelToUseInDiagnoseTab"
+                    class="ui-controlgroup-horizontal">
 
-          <jqm-radiobutton-one  id="useClassificationPanelInput{{$index}}"
-              on-click="diagnoseConfigController.onChangeInputPanel($index, 'useClassificationPanel')"
-              value="useClassificationPanel"> Use Classification Panel
-          </jqm-radiobutton-one>
-          <jqm-radiobutton-one id="useRightPanelInput{{$index}}"
-              on-click="diagnoseConfigController.onChangeInputPanel($index, 'useRightPanel')"
-              value="useRightPanel">   Use Right Panel
-          </jqm-radiobutton-one>
+                  <jqm-radiobutton-one  id="useClassificationPanelInput{{$index}}"
+                      on-click="diagnoseConfigController.onChangeInputPanel($index, 'useClassificationPanel')"
+                      value="useClassificationPanel"> Use Classification Panel
+                  </jqm-radiobutton-one>
+                  <jqm-radiobutton-one id="useRightPanelInput{{$index}}"
+                      on-click="diagnoseConfigController.onChangeInputPanel($index, 'useRightPanel')"
+                      value="useRightPanel">   Use Right Panel
+                  </jqm-radiobutton-one>
 
-        </jqm-fieldset>
+                </jqm-fieldset> -->
 
-        <jqm-fieldset>
-          <jqm-checkbox id="selectSpecificClassification{{$index}}"
-            model="tab.properties.selectSpecificClassification" last
-            is-disabled="tab.properties.inputPanelToUseInDiagnoseTab === 'useClassificationPanel'">
-              Select specific classification
-          </jqm-checkbox>
-        </jqm-fieldset>
+                <jqm-fieldset class="ui-controlgroup-horizontal" class="">
 
-      <!--
-        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                  <jqm-checkbox  id="useClassificationPanelInput{{$index}}"
+                      on-click="diagnoseConfigController.onChangeInputPanel($index, 'useClassificationPanel')"
+                      model="tab.properties.useClassificationPanelInput" last
+                      is-disabled="tab.properties.useRightPanelInput"
+                      value="useClassificationPanel"> Use Classification Panel
+                  </jqm-checkbox>
 
-          <label for="useClassificationPanelInput{{$index}}">
-            Use Classification Panel
-            <input type="radio" id="useClassificationPanelInput{{$index}}"
-                   value="useClassificationPanel"
-                   name="inputPanelToUseInDiagnoseTab"
-                   ng-change="diagnoseConfigController.onChangeInputPanel($index, 'useClassificationPanel')"
-                   ng-model="tab.properties.inputPanelToUseInDiagnoseTab" />
-          </label>
+                  <jqm-checkbox id="useRightPanelInput{{$index}}"
+                    model="tab.properties.useRightPanelInput" last
+                    is-disabled="tab.properties.useClassificationPanelInput">
+                      Use Right Panel
+                  </jqm-checkbox>
 
-          <label for="useRightPanelInput{{$index}}">
-            Use Right Panel
-            <input type="radio" id="useRightPanelInput{{$index}}"
-                 value="useRightPanel"
-                 name="inputPanelToUseInDiagnoseTab"
-                 ng-change="diagnoseConfigController.onChangeInputPanel($index, 'useRightPanel')"
-                 ng-model="tab.properties.inputPanelToUseInDiagnoseTab" />
-          </label>
+                  <jqm-checkbox id="selectSpecificClassification{{$index}}"
+                    model="tab.properties.selectSpecificClassification" last
+                    is-disabled="tab.properties.useClassificationPanelInput">
+                      Select specific classification
+                  </jqm-checkbox>
+                </jqm-fieldset>
 
-        </fieldset>
 
-        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-          <label for="selectSpecificClassification{{$index}}"
-                ng-disabled="tab.properties.inputPanelToUseInDiagnoseTab === 'useClassificationPanel'">
-                Select specific classification
-                <input type="checkbox" id="selectSpecificClassification{{$index}}"
-                  value="selectSpecificClassification"
-                  ng-model="tab.properties.selectSpecificClassification"
-                  ng-disabled="tab.properties.inputPanelToUseInDiagnoseTab === 'useClassificationPanel'" />
-          </label>
-        </fieldset> -->
-      </form>
+              <!--
+                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
 
-      <div class="ui-grid-c">
-        <div class="ui-block-a"
-            ng-show="tab.properties.inputPanelToUseInDiagnoseTab === 'useClassificationPanel'
-                      || (tab.properties.inputPanelToUseInDiagnoseTab === 'useRightPanel'
-                          && tab.properties.selectSpecificClassification === true)">
-          Left Panel
-          <select data-mini="true" data-inline="true" ng-model="tab.leftPanelCategoriesList"
-              class="selected-list"
-              ng-options="v.listName for v in
-                          diagnoseConfigController.model.controlsServiceValues.lists 
-                          | property:'section':'categories'"
-              ng-change="diagnoseConfigController.onChangeCategories($index, 'leftPanel')"
-              >
-            <option value="">-- Select List --</option>
-          </select>
+                  <label for="useClassificationPanelInput{{$index}}">
+                    Use Classification Panel
+                    <input type="radio" id="useClassificationPanelInput{{$index}}"
+                           value="useClassificationPanel"
+                           name="inputPanelToUseInDiagnoseTab"
+                           ng-change="diagnoseConfigController.onChangeInputPanel($index, 'useClassificationPanel')"
+                           ng-model="tab.properties.inputPanelToUseInDiagnoseTab" />
+                  </label>
+
+                  <label for="useRightPanelInput{{$index}}">
+                    Use Right Panel
+                    <input type="radio" id="useRightPanelInput{{$index}}"
+                         value="useRightPanel"
+                         name="inputPanelToUseInDiagnoseTab"
+                         ng-change="diagnoseConfigController.onChangeInputPanel($index, 'useRightPanel')"
+                         ng-model="tab.properties.inputPanelToUseInDiagnoseTab" />
+                  </label>
+
+                </fieldset>
+
+                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                  <label for="selectSpecificClassification{{$index}}"
+                        ng-disabled="tab.properties.inputPanelToUseInDiagnoseTab === 'useClassificationPanel'">
+                        Select specific classification
+                        <input type="checkbox" id="selectSpecificClassification{{$index}}"
+                          value="selectSpecificClassification"
+                          ng-model="tab.properties.selectSpecificClassification"
+                          ng-disabled="tab.properties.inputPanelToUseInDiagnoseTab === 'useClassificationPanel'" />
+                  </label>
+                </fieldset> -->
+              </form>
+
+              <div class="ui-grid-c">
+                <div class="ui-block-a"
+                    >
+                  Left Panel
+                  <select data-mini="true" data-inline="true" class="selected-list"
+                      ng-model="tab.leftPanelCategoriesList"
+                      ng-disabled="!tab.properties.useClassificationPanelInput || tab.properties.useRightPanelInput"
+                      ng-options="v.listName for v in
+                                  diagnoseConfigController.model.controlsServiceValues.lists 
+                                  | property:'section':'categories'"
+                      >
+                    <option value="">-- Select List --</option>
+                  </select>
+                </div>
+
+                <div class="ui-block-b"
+                  >
+                  Right Panel
+                  <select data-mini="true" data-inline="true" class="selected-list"
+                      ng-model="tab.rightPanelCategoriesList"
+                      ng-disabled="!tab.properties.useRightPanelInput || tab.properties.useClassificationPanelInput"
+                      ng-options="v.listName for v in
+                                  diagnoseConfigController.model.controlsServiceValues.lists 
+                                  | property:'section':'categories'"
+                      >
+                    <option value="">-- Select List --</option>
+                  </select>
+                </div>
+
+                <div class="ui-block-c"
+                  >
+                  Specific Classification
+                  <select data-mini="true" data-inline="true" class="selected-list"
+                      ng-model="tab.properties.specificCategoriesList"
+                      ng-disabled="tab.properties.useClassificationPanelInput
+                                  || !tab.properties.selectSpecificClassification"
+                      ng-options="v.listName for v in
+                                  diagnoseConfigController.model.controlsServiceValues.lists 
+                                  | property:'section':'categories'"
+                      ng-change="diagnoseConfigController.onChangeCategories($index, 'specificCategory')"
+                      >
+                    <option value="">-- Select List --</option>
+                  </select>
+                </div>
+
+                <div class="ui-block-d"
+                    >
+                  <select data-mini="true" data-inline="true" class="selected-list"
+                      ng-model="tab.properties.selectSpecificClassificationCategory"
+                      ng-disabled="tab.properties.useClassificationPanelInput 
+                                  || !tab.properties.selectSpecificClassification"
+                      ng-options="v for v in tab.categoriesListArray"
+                      >
+                    <option value="">-- Select List --</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <div class="ui-field-contain">
+              <form>
+                <jqm-fieldset>
+                  <jqm-checkbox id="useAsMandatoryInput{{$index}}" value="useAsMandatory"
+                      model="tab.properties.useAsMandatoryInput" last>
+                      Use as Mandatory
+                  </jqm-checkbox>
+                </jqm-fieldset>
+              </form>
+            </div>
+
+          </div>
         </div>
-
-        <div class="ui-block-b"
-          ng-show="tab.properties.inputPanelToUseInDiagnoseTab === 'useRightPanel'">
-          Right Panel
-          <select data-mini="true" data-inline="true" ng-model="tab.rightPanelCategoriesList"
-              class="selected-list"
-              ng-options="v.listName for v in
-                          diagnoseConfigController.model.controlsServiceValues.lists 
-                          | property:'section':'categories'"
-              ng-change="diagnoseConfigController.onChangeCategories($index, 'rightPanel')"
-              >
-            <option value="">-- Select List --</option>
-          </select>
-        </div>
-
-        <div class=""
-            ng-show="tab.properties.inputPanelToUseInDiagnoseTab === 'useRightPanel'
-                  && tab.properties.selectSpecificClassification">
-          <select data-mini="true" data-inline="true"
-              ng-model="tab.properties.selectSpecificClassificationCategory"
-              class="selected-list"
-              ng-options="v for v in tab.categoriesListArray"
-              >
-            <option value="">-- Select List --</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    
-    <div class="ui-field-contain">
-      <form>
-        <!-- <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-          <input type="checkbox" id="useAsMandatoryInput{{$index}}"
-                 value="useAsMandatory"
-                 ng-model="tab.properties.useAsMandatoryInput" />
-          <label for="useAsMandatoryInput{{$index}}">Use as Mandatory</label>
-
-        </fieldset> -->
-        <jqm-fieldset>
-          <jqm-checkbox id="useAsMandatoryInput{{$index}}" value="useAsMandatory"
-              model="tab.properties.useAsMandatoryInput" last>
-              Use as Mandatory
-          </jqm-checkbox>
-        </jqm-fieldset>
-      </form>
-    </div>
-
-  </div>
-</div>
 
 
       </div>
