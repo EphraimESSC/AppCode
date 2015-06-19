@@ -2,7 +2,7 @@
   <div ng-repeat="diagnose in diagnoseData track by $index">
     <div jqm-collapsible data-collapsed="false" title="{{ diagnose.diagnoseName || 'Diagnose'}}">
 
-      <ul style="list-style: none" class="ui-listview">
+      <ul style="list-style: none" class="client-diagnose-details ui-listview">
         <li ng-repeat="c in diagnose.categoriesArray"
             data-role="{{ (c.title ? 'list-divider' : '') }}"
             ng-class="{ 'ui-li-divider':c.title, 'ui-bar-inherit':c.title, 'ui-li-static':!c.title, 'ui-body-inherit':!c.title }"
